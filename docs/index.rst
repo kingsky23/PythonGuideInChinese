@@ -1,0 +1,16 @@
+.. osxpython documentation master file, created by
+   sphinx-quickstart on Wed Aug  4 22:51:11 2010.
+   You can adapt this file completely to your liking, but it should at least
+   contain the root `toctree` directive.
+
+昌旭翻译的Hitchhiker的Python指南
+=================================
+
+欢迎阅读《Hitchhiker的Python指南》
+
+**当前这份文档的开发工作很重**，如果你乐意帮忙，`请在GitHub上fork我们 <https://github.com/kennethreitz/python-guide>`_
+
+这份“傻逼”的指南旨在给Python的新老手们提供一个不错的参考书来安装、
+配置和使用Python
+
+.. include:: contents.rst.inc
