@@ -11,57 +11,48 @@ Windows版的Python是作为MSI安装包提供的，只要双击即可安装。M
 安装这些工具
 
 按照设计，Python被安装到带有版本号的路径下，例如：Python 2.7会被安装在
-``C:\Python27\``，所以你可以在一个系统中安装多个版本的Python而不冲突。
+``C:\Python27\`` ，所以你可以在一个系统中安装多个版本的Python而不冲突。
 当然，只有一个解析器可以被作为打开Python类型文件的默认程序。此外，
-Python并不会自动设置``PATH``环境变量，所以你可以借此来控制使用哪一个版本的Python
+Python并不会自动设置 ``PATH`` 环境变量，所以你可以借此来控制使用哪一个版本的Python
 
-Typing the full path name for a Python interpreter each time quickly gets
-tedious, so add the directories for your default Python version to the PATH.
-Assuming that your Python installation is in ``C:\Python27\``, add this to your
-PATH::
+每一次都要输入Python解析器的完整路径确实很操蛋，所以将你要默认使用得Python版本得路径
+加入 ``PATH`` 环境变量。假设你的Python安装在 ``C:\Python27\`` ，将这个路径加入你的PATH::
 
     C:\Python27\;C:\Python27\Scripts\
 
 You can do this easily by running the following in ``powershell``::
+你也可以直接运行下述命令通过 ``powershell`` ::
 
     [Environment]::SetEnvironmentVariable("Path", "$env:Path;C:\Python27\;C:\Python27\Scripts\", "User")
 
-The second (``Scripts``) directory receives command files when certain
-packages are installed, so it is a very useful addition.
-You do not need to install or configure anything else to use Python. Having
-said that, I would strongly recommend that you install the tools and libraries
-described in the next section before you start building Python applications for
-real-world use. In particular, you should always install Setuptools, as it
-makes it much easier for you to use other third-party Python libraries.
+第二个(``Scripts``)目录将接受一些命令文件，如果安装了一些包，所以这是个十分有用的附加项。
+其实你不需要安装或配置其它的东西便可以使用Python了。但是在你开始使用Python前，我还是强烈
+推荐你安装下面一节描述的工具和库。特别的，你最好一直安着Setuptools，它让安装第三方库变得
+很easy
 
 Setuptools + Pip
 ----------------
 
-The most crucial third-party Python software of all is Setuptools, which
-extends the packaging and installation facilities provided by the distutils in
-the standard library. Once you add Setuptools to your Python system you can
-download and install any compliant Python software product with a single
-command. It also enables you to add this network installation capability to
-your own Python software with very little work.
+所有第三方Python软件中最为重要的当属Setuptools，它可以扩展标准库提供的包和工具。一旦你装
+了Setuptools，你只需一条简单的命令便可下载和安装任何复杂的Python。它还允许你让你的Python
+软件也具有这种网络安装的能力
 
-To obtain the latest version of Setuptools for Windows, run the python script
-available here: `ez_setup.py <https://bitbucket.org/pypa/setuptools/raw/bootstrap/ez_setup.py>`_
+要安装最新版的Setuptools, 运行这个Python脚本: 
+`ez_setup.py <https://bitbucket.org/pypa/setuptools/raw/bootstrap/ez_setup.py>`_
 
+现在你有一个新的命令可以用了: **easy_install**. 但这个命令的名声不太好，很多人不推荐它，
+所以我们使用另一个安装工具: **pip**. 不像easy_install，pip允许你安装、卸载、更新你安装的
+第三方工具和库
 
-You'll now have a new command available to you: **easy_install**. It is
-considered by many to be deprecated, so we will install its replacement:
-**pip**. Pip allows for uninstallation of packages, and is actively maintained,
-unlike easy_install.
-
-To install pip, run the python script available here:
+要安装最新版pip，运行下面这个Python脚本:
 `get-pip.py <https://raw.github.com/pypa/pip/master/contrib/get-pip.py>`_
 
 
 Virtualenv
 ----------
 
-After Distribute & Pip, the next development tool that you should install is
-`virtualenv <http://pypi.python.org/pypi/virtualenv/>`_. Use pip
+安装完Setuptools和Pip后，下一个要安装的开发工具便是
+`virtualenv <http://pypi.python.org/pypi/virtualenv/>`_. 使用pip安装
 
 .. code-block:: console
 
