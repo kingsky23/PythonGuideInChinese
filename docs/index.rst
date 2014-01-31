@@ -10,7 +10,7 @@
 
 **当前这份文档的开发工作很重**，如果你乐意帮忙，`请在GitHub上fork我们 <https://github.com/kennethreitz/python-guide>`_
 
-这份“傻逼”的指南旨在给Python的新老手们提供一个不错的参考书来安装、
+这份“愚蠢”的指南旨在给Python的新老手们提供一个不错的参考书来安装、
 配置和使用Python
 
 .. include:: contents.rst.inc
