@@ -1,0 +1,245 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>选择一个解析器 &mdash; The Hitchhiker&#39;s Guide to Python</title>
+    
+    <link rel="stylesheet" href="../../_static/flasky.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="The Hitchhiker&#39;s Guide to Python" href="../../" />
+    <link rel="next" title="Installing Python on Mac OS X" href="../install/osx/" />
+    <link rel="prev" title="昌旭翻译的Hitchhiker的Python指南" href="../../" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex/" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../install/osx/" title="Installing Python on Mac OS X"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../../" title="昌旭翻译的Hitchhiker的Python指南"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../../">The Hitchhiker&#39;s Guide to Python</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="id1">
+<h1>选择一个解析器<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="python-2">
+<span id="which-python"></span><h2>当前 (Python 2)<a class="headerlink" href="#python-2" title="Permalink to this headline">¶</a></h2>
+<p>如果你还在纠结选择哪个Python解析器，我*强烈*推荐使用Python 2.7.x，除非你有其他
+不用的理由</p>
+<p>如果你打算使用新的Python模块也应用Python 2.7.x。如果你打算让它在2.7上工作，你也
+可以添加其他对老版本的支持</p>
+</div>
+<div class="section" id="python-3">
+<h2>未来 (Python 3)<a class="headerlink" href="#python-3" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div>Python 2.x是现状，Python 3.x则是全新的东西</div></blockquote>
+<p><a class="reference external" href="http://wiki.python.org/moin/Python2orPython3">更多内容</a></p>
+<p>另一方面，Python 3和Python 2有极大的不同，所以写出同时兼容Python 2和Python 3
+的代码是十分困难的过程</p>
+<p>不过这仍旧是可能的`写同时兼容Python 2.6, 2.7 and 3.3的代码
+&lt;<a class="reference external" href="http://lucumr.pocoo.org/2013/5/21/porting-to-python-3-redux/">http://lucumr.pocoo.org/2013/5/21/porting-to-python-3-redux/</a>&gt;`_。根据你编写的
+软件种类的不同，这项工作可能极度困难，如果你只是个初学者，这还有许多更重要的事
+需要你担心</p>
+</div>
+<div class="section" id="id3">
+<h2>实现<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>这里有许多主流基于不同后端的Python实现</p>
+<div class="section" id="cpython">
+<h3>CPython<a class="headerlink" href="#cpython" title="Permalink to this headline">¶</a></h3>
+<p><a href="#id4"><span class="problematic" id="id5">`</span></a>CPython &lt;<a class="reference external" href="http://www.python.org">http://www.python.org</a>&gt;`_是Python的一个参考实现，用C语言编写。它将Python
+代码编译成中间字节码后被虚拟机所解析。人们时常提起的*Python*不仅是指语言本身常常
+还指这个实现。它提供对Python包和C语言扩展模块最高级别的兼容性</p>
+<p>如果你编写开源开源Python代码并希望有更多的使用者，以CPython为目标是最好的选择。
+如果你需要使用那些依赖C语言扩展的包（比如numpy），CPython将是你唯一的选择</p>
+<p>作为参考版实现，CPythonz支持所有Python语言的版本。Python 3只有CPython的实现</p>
+</div>
+<div class="section" id="pypy">
+<h3>PyPy<a class="headerlink" href="#pypy" title="Permalink to this headline">¶</a></h3>
+<p><a href="#id6"><span class="problematic" id="id7">`</span></a>PyPy &lt;<a class="reference external" href="http://pypy.org/">http://pypy.org/</a>&gt;`_由一个叫做RPython的“限制静态类型？”的Python语言子集实
+现。这个解释器具有实时编译器并支持多种后端(C, CLI, JVM)</p>
+<p>PyPy aims for maximum compatibility with the reference CPython implementation
+while improving performance.
+PyPy旨在保证对CPython最大兼容性的情况下尽可能提高性能</p>
+<p>If you are looking to squeeze more performance out of your Python code, it&#8217;s
+worth giving PyPy a try. On a suite of benchmarks, it&#8217;s currently <a class="reference external" href="http://speed.pypy.org/">over 5 times
+faster than CPython</a>.
+如果你想要尽可能提高你的Python代码的性能的话，PyPy值得一试。在一系列基准测试中，
+它`比CPython快5倍&lt;<a class="reference external" href="http://speed.pypy.org/">http://speed.pypy.org/</a>&gt;`_</p>
+<p>Currently PyPy supports Python 2.7. <a class="footnote-reference" href="#pypy-ver" id="id8">[1]</a>
+当前PyPy支持Python 2.7. <a class="footnote-reference" href="#pypy-ver" id="id9">[1]</a></p>
+</div>
+<div class="section" id="jython">
+<h3>Jython<a class="headerlink" href="#jython" title="Permalink to this headline">¶</a></h3>
+<p><a href="#id10"><span class="problematic" id="id11">`</span></a>Jython &lt;<a class="reference external" href="http://www.jython.org/">http://www.jython.org/</a>&gt;`_是一个将Python代码编译为Java字节码并在JVM中执行的
+Python实现。它的额外优势在于可以像调用Python模块一样调用Java的类</p>
+<p>如果你需要针对JVM写Python代码，Jython是最好的选择</p>
+<p>Jython当前支持到Python 2.5. <a class="footnote-reference" href="#jython-ver" id="id12">[2]</a></p>
+</div>
+<div class="section" id="ironpython">
+<h3>IronPython<a class="headerlink" href="#ironpython" title="Permalink to this headline">¶</a></h3>
+<p><a href="#id13"><span class="problematic" id="id14">`</span></a>IronPython &lt;<a class="reference external" href="http://ironpython.net/">http://ironpython.net/</a>&gt;`_是一个基于.NET框架的Python实现。它既可以使用
+Python库还可以使用.NET框架的库，同时还可以与其他.NET语言交互</p>
+<p><a href="#id15"><span class="problematic" id="id16">`</span></a>Python Tools for Visual Studio &lt;<a class="reference external" href="http://ironpython.net/tools/">http://ironpython.net/tools/</a>&gt;`_直接将IronPython
+集成进Visual Studio开发环境，对Windows开发者来讲这将是个好选择</p>
+<p>IronPython当前支持到Python 2.7. <a class="footnote-reference" href="#iron-ver" id="id17">[3]</a></p>
+<table class="docutils footnote" frame="void" id="pypy-ver" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[1]</td><td><em>(<a class="fn-backref" href="#id8">1</a>, <a class="fn-backref" href="#id9">2</a>)</em> <a class="reference external" href="http://pypy.org/compat.html">http://pypy.org/compat.html</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="jython-ver" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id12">[2]</a></td><td><a class="reference external" href="http://wiki.python.org/jython/JythonFaq/GeneralInfo#Is_Jython_the_same_language_as_Python.3F">http://wiki.python.org/jython/JythonFaq/GeneralInfo#Is_Jython_the_same_language_as_Python.3F</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="iron-ver" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id17">[3]</a></td><td><a class="reference external" href="http://ironpython.codeplex.com/releases/view/81726">http://ironpython.codeplex.com/releases/view/81726</a></td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper"><h1><a href="http://python-guide.org">Python指南.</a></h1>
+<p>
+  这份“傻逼”的指南旨在给Python的新老手们提供一个不错的参考书来安装、配置和使用Python
+</p>
+
+<h3>获取更新</h3>
+<p>收取更新消息</p>
+
+<p><a href="http://tinyletter.com/kennethreitz">订阅新闻邮件</a></p>
+
+<h3>捐助</h3>
+<p>
+    如果你喜欢这个指南，给作者捐点Money吧<a href="https://www.gittip.com/kennethreitz/">on Gittip</a>:
+</p>
+<p>
+  <iframe style="border: 0; margin: 0; padding: 0;"
+      src="https://www.gittip.com/kennethreitz/widget.html"
+      width="48pt" height="20pt"></iframe>
+</p>
+  <h3><a href="../../">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">选择一个解析器</a><ul>
+<li><a class="reference internal" href="#python-2">当前 (Python 2)</a></li>
+<li><a class="reference internal" href="#python-3">未来 (Python 3)</a></li>
+<li><a class="reference internal" href="#id3">实现</a><ul>
+<li><a class="reference internal" href="#cpython">CPython</a></li>
+<li><a class="reference internal" href="#pypy">PyPy</a></li>
+<li><a class="reference internal" href="#jython">Jython</a></li>
+<li><a class="reference internal" href="#ironpython">IronPython</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../">Documentation overview</a><ul>
+      <li>Previous: <a href="../../" title="previous chapter">昌旭翻译的Hitchhiker的Python指南</a></li>
+      <li>Next: <a href="../install/osx/" title="next chapter">Installing Python on Mac OS X</a></li>
+  </ul></li>
+</ul>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../../_sources/starting/which-python.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search/" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy; Copyright 2013. A <a href="http://kennethreitz.com/pages/open-projects.html">Kenneth Reitz</a> Project. <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/"> Creative Commons Share-Alike 3.0</a>.
+    </div>
+    <a href="https://github.com/kennethreitz/python-guide" class="github">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" />
+    </a>
+
+    <script type="text/javascript">
+
+      var _gaq2 = _gaq2 || [];
+      _gaq2.push(['_setAccount', 'UA-8742933-10']);
+      _gaq2.push(['_setDomainName', 'none']);
+      _gaq2.push(['_setAllowLinker', true]);
+      _gaq2.push(['_trackPageview']);
+
+      (function() {
+        var ga2 = document.createElement('script'); ga2.type = 'text/javascript'; ga2.async = true;
+        ga2.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga2, s);
+      })();
+
+    </script>
+
+    <script type="text/javascript">
+      (function() {
+        var t   = document.createElement('script');
+        t.type  = 'text/javascript';
+        t.async = true;
+        t.id    = 'gauges-tracker';
+        t.setAttribute('data-site-id',
+                       '4ddc1cfaf5a1f50fcc000001');
+        t.src = '//secure.gaug.es/track.js';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(t, s);
+      })();
+    </script>
+  </body>
+</html>

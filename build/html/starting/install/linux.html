@@ -1,0 +1,204 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>在Linux上安装Python &mdash; The Hitchhiker&#39;s Guide to Python</title>
+    
+    <link rel="stylesheet" href="../../_static/flasky.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="The Hitchhiker&#39;s Guide to Python" href="../../index.html" />
+    <link rel="next" title="Structuring Your Project" href="../../writing/structure.html" />
+    <link rel="prev" title="Installing Python on Windows" href="win.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../writing/structure.html" title="Structuring Your Project"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="win.html" title="Installing Python on Windows"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../../index.html">The Hitchhiker&#39;s Guide to Python</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="linuxpython">
+<span id="install-linux"></span><h1>在Linux上安装Python<a class="headerlink" href="#linuxpython" title="Permalink to this headline">¶</a></h1>
+<p>最新版本的Ubuntu和Fedora <strong>自带Python 2.7</strong></p>
+<p>最新版的Redhat Enterprise (RHEL) 和 CentOS自带Python 2.6。
+一些老版本的RHEL和CentOS自带Python 2.4，不过这个版本对现代开发来讲太老了。
+幸运的是， <a class="reference external" href="http://fedoraproject.org/wiki/EPEL">Extra Packages for Enterprise Linux</a> 包括了基于Fedora的高质量的附加包。
+这个仓库包括了一个专门设计与系统自带兼容的Python 2.4兼容的Python 2.6的包</p>
+<p>你不需要安装或设置任何其他东西。在你开始用Python写程序之前，
+我强烈推荐你安装下一节中叙述的工具和库。此外，你应该安装Distribute，
+因为它可以让安装第三方库变的很简单</p>
+<div class="section" id="distribute-pip">
+<h2>Distribute &amp; Pip<a class="headerlink" href="#distribute-pip" title="Permalink to this headline">¶</a></h2>
+<p>在所有第三方Python软件中最至关重要的便是Distribute，它可以扩展由distutils
+提供的打包和安装工具。一旦你安装了Distribute，你可以仅通过一条命令来下载、
+安装任何符合要求的Python软件。同时它还允许你很方便的给自己的模块也加上这种强大的
+网络安装能力。</p>
+<p>为了给Linux安装最新版的Distribute，请运行下面这个Python脚本
+<a class="reference external" href="http://python-distribute.org/distribute_setup.py">python-distribute</a></p>
+<p>最新的``easy_install``命令受到了许多反对，所以我们讲安装它的替代品: <strong>pip</strong>
+Pip允许卸载包，而且可以积极维护它们，不像easy_install</p>
+<p>安装pip，只需要简单的打开一个命令窗口然后运行</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> easy_install pip
+</pre></div>
+</div>
+</div>
+<div class="section" id="virtualenv">
+<h2>Virtualenv<a class="headerlink" href="#virtualenv" title="Permalink to this headline">¶</a></h2>
+<p>安装好Distribute和Pip后，下一个你应该安装的开发工具是
+<a class="reference external" href="http://pypi.python.org/pypi/virtualenv/">virtualenv</a></p>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> pip install virtualenv
+</pre></div>
+</div>
+<p>virtualenv提供了创建虚拟Python环境的能力，他们彼此之间、以及和主要的Python安装之间，
+不互相影响。如果你在开始编码之前安装了virtualenv，你可以用它为每一个项目创建完全干净的
+Python环境。这对于不同框架之间互相影响的Web开发来讲尤其重要</p>
+<p>为了建立一个新的Python环境，将工作目录改变为你想要存储新环境的地方，
+然后在你的项目目录中运行virtualenv</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> virtualenv --distribute venv
+</pre></div>
+</div>
+<p>使用环境时，执行``source venv/bin/activate``。你的命令窗口将显示当前活动的
+环境。一旦你在当前虚拟环境中完成工作，执行``deactivate``来还原设置</p>
+<p>每一个新的环境都会自动的包括``pip``的一份拷贝，所以你可以随意安装你想使用的第三方
+库和工具。将你的代码放在环境中的子目录下。当你不再需要特殊环境时，只需简单的将你的代码
+复制出来，然后删除环境的主目录即可</p>
+<hr class="docutils" />
+<p>本页是一个和 <a class="reference external" href="http://www.stuartellis.eu/articles/python-development-windows/">另一个指南</a> 的混合版本，但都基于同样的协议。</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper"><h1><a href="http://python-guide.org">Python指南.</a></h1>
+<p>
+  这份“傻逼”的指南旨在给Python的新老手们提供一个不错的参考书来安装、配置和使用Python
+</p>
+
+<h3>获取更新</h3>
+<p>收取更新消息</p>
+
+<p><a href="http://tinyletter.com/kennethreitz">订阅新闻邮件</a></p>
+
+<h3>捐助</h3>
+<p>
+    如果你喜欢这个指南，给作者捐点Money吧<a href="https://www.gittip.com/kennethreitz/">on Gittip</a>:
+</p>
+<p>
+  <iframe style="border: 0; margin: 0; padding: 0;"
+      src="https://www.gittip.com/kennethreitz/widget.html"
+      width="48pt" height="20pt"></iframe>
+</p>
+  <h3><a href="../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">在Linux上安装Python</a><ul>
+<li><a class="reference internal" href="#distribute-pip">Distribute &amp; Pip</a></li>
+<li><a class="reference internal" href="#virtualenv">Virtualenv</a></li>
+</ul>
+</li>
+</ul>
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="win.html" title="previous chapter">Installing Python on Windows</a></li>
+      <li>Next: <a href="../../writing/structure.html" title="next chapter">Structuring Your Project</a></li>
+  </ul></li>
+</ul>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../../_sources/starting/install/linux.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy; Copyright 2013. A <a href="http://kennethreitz.com/pages/open-projects.html">Kenneth Reitz</a> Project. <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/"> Creative Commons Share-Alike 3.0</a>.
+    </div>
+    <a href="https://github.com/kennethreitz/python-guide" class="github">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" />
+    </a>
+
+    <script type="text/javascript">
+
+      var _gaq2 = _gaq2 || [];
+      _gaq2.push(['_setAccount', 'UA-8742933-10']);
+      _gaq2.push(['_setDomainName', 'none']);
+      _gaq2.push(['_setAllowLinker', true]);
+      _gaq2.push(['_trackPageview']);
+
+      (function() {
+        var ga2 = document.createElement('script'); ga2.type = 'text/javascript'; ga2.async = true;
+        ga2.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga2, s);
+      })();
+
+    </script>
+
+    <script type="text/javascript">
+      (function() {
+        var t   = document.createElement('script');
+        t.type  = 'text/javascript';
+        t.async = true;
+        t.id    = 'gauges-tracker';
+        t.setAttribute('data-site-id',
+                       '4ddc1cfaf5a1f50fcc000001');
+        t.src = '//secure.gaug.es/track.js';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(t, s);
+      })();
+    </script>
+  </body>
+</html>

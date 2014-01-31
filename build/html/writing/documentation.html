@@ -1,0 +1,294 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Documentation &mdash; The Hitchhiker&#39;s Guide to Python</title>
+    
+    <link rel="stylesheet" href="../_static/flasky.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="The Hitchhiker&#39;s Guide to Python" href="../index.html" />
+    <link rel="next" title="Testing Your Code" href="tests.html" />
+    <link rel="prev" title="Reading Great Code" href="reading.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="tests.html" title="Testing Your Code"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="reading.html" title="Reading Great Code"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">The Hitchhiker&#39;s Guide to Python</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="documentation">
+<h1>Documentation<a class="headerlink" href="#documentation" title="Permalink to this headline">¶</a></h1>
+<p>Readability is a primary focus for Python developers, in both project
+and code documentation. Following some simple best practices can save
+both you and others a lot of time.</p>
+<div class="section" id="project-documentation">
+<h2>Project Documentation<a class="headerlink" href="#project-documentation" title="Permalink to this headline">¶</a></h2>
+<p>A <tt class="docutils literal"><span class="pre">README</span></tt> file at the root directory should give general
+information to the users and the maintainers. It should be raw text or
+written in some very easy to read markup, such as
+<a class="reference internal" href="#restructuredtext-ref"><em>reStructuredText</em></a> and Markdown. It should contain a few
+lines explaining the purpose of the project or the library (without
+assuming the user knows anything about the project), the url of the
+main source for the software, and some basic credit information. This
+file is the main entry point for readers of the code.</p>
+<p>An <tt class="docutils literal"><span class="pre">INSTALL</span></tt> file is less necessary with python.  The installation
+instructions are often reduced to one command, such as <tt class="docutils literal"><span class="pre">pip</span> <span class="pre">install</span>
+<span class="pre">module</span></tt> or <tt class="docutils literal"><span class="pre">python</span> <span class="pre">setup.py</span> <span class="pre">install</span></tt> and added to the <tt class="docutils literal"><span class="pre">README</span></tt>
+file.</p>
+<p>A <tt class="docutils literal"><span class="pre">LICENSE</span></tt> file should <em>always</em> be present and specify the license under which the
+software is made available to the public.</p>
+<p>A <tt class="docutils literal"><span class="pre">TODO</span></tt> file or a <tt class="docutils literal"><span class="pre">TODO</span></tt> section in <tt class="docutils literal"><span class="pre">README</span></tt> should list the
+planned development for the code.</p>
+<p>A <tt class="docutils literal"><span class="pre">CHANGELOG</span></tt> file or section in <tt class="docutils literal"><span class="pre">README</span></tt> should compile a short
+overview of the changes in the code base for the latest versions.</p>
+</div>
+<div class="section" id="project-publication">
+<h2>Project Publication<a class="headerlink" href="#project-publication" title="Permalink to this headline">¶</a></h2>
+<p>Depending on the project, your documentation might include some or all
+of the following components:</p>
+<ul class="simple">
+<li>An <em>introduction</em> should show a very short overview of what can be
+done with the product, using one or two extremely simplified use
+cases. This is the thirty-second pitch for your project.</li>
+<li>A <em>tutorial</em> should show some primary use cases in more detail. The reader will
+follow a step-by-step procedure to set-up a working prototype.</li>
+<li>An <em>API reference</em> is typically generated from the code (see
+<a class="reference internal" href="#docstring-ref"><em>docstrings</em></a>). It will list all publicly available interfaces,
+parameters, and return values.</li>
+<li><em>Developer documentation</em> is intended for potential contributors. This can
+include code convention and general design strategy of the project.</li>
+</ul>
+<div class="section" id="sphinx">
+<span id="sphinx-ref"></span><h3>Sphinx<a class="headerlink" href="#sphinx" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="http://sphinx.pocoo.org">Sphinx</a> is far and away the most popular python documentation
+tool. <strong>Use it.</strong>  It converts <a class="reference internal" href="#restructuredtext-ref"><em>reStructuredText</em></a> markup language
+into a range of output formats including HTML, LaTeX (for printable
+PDF versions), manual pages, and plain text.</p>
+<p>There is also <strong>great</strong>, <strong>free</strong> hosting for your <a class="reference external" href="http://sphinx.pocoo.org">Sphinx</a> docs:
+<a class="reference external" href="http://readthedocs.org">Read The Docs</a>. Use it. You can configure it with commit hooks to
+your source repository so that rebuilding your documentation will
+happen automatically.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Sphinx is famous for its API generation, but it also works well
+for general project documentation. This Guide is built with
+<a class="reference external" href="http://sphinx.pocoo.org">Sphinx</a> and is hosted on <a class="reference external" href="http://readthedocs.org">Read The Docs</a></p>
+</div>
+</div>
+<div class="section" id="restructuredtext">
+<span id="restructuredtext-ref"></span><h3>reStructuredText<a class="headerlink" href="#restructuredtext" title="Permalink to this headline">¶</a></h3>
+<p>Most Python documentation is written with <a class="reference external" href="http://docutils.sourceforge.net/rst.html">reStructuredText</a>. It&#8217;s like
+Markdown with all the optional extensions built in.</p>
+<p>The <a class="reference external" href="http://sphinx.pocoo.org/rest.html">reStructuredText Primer</a> and the <a class="reference external" href="http://docutils.sourceforge.net/docs/user/rst/quickref.html">reStructuredText Quick
+Reference</a> should help you familiarize yourself with its syntax.</p>
+</div>
+</div>
+<div class="section" id="code-documentation-advice">
+<h2>Code Documentation Advice<a class="headerlink" href="#code-documentation-advice" title="Permalink to this headline">¶</a></h2>
+<p>Comments clarify code and begin with a hash (<tt class="docutils literal"><span class="pre">#</span></tt>).</p>
+<p id="docstring-ref">In Python, <em>docstrings</em> describe modules, classes, and functions:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">square_and_rooter</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Returns the square root of self times self.&quot;&quot;&quot;</span>
+    <span class="o">...</span>
+</pre></div>
+</div>
+<p>In general, follow the comment section of <span class="target" id="index-0"></span><a class="pep reference external" href="http://www.python.org/dev/peps/pep-0008#comments"><strong>PEP 8</strong></a> (the &#8220;Python Style Guide&#8221;).</p>
+<div class="section" id="commenting-sections-of-code">
+<h3>Commenting Sections of Code<a class="headerlink" href="#commenting-sections-of-code" title="Permalink to this headline">¶</a></h3>
+<p><em>Do not use triple-quote strings to comment code</em>. This is not a good
+practice, because line-oriented command-line tools such as grep will
+not be aware that the commented code is inactive. It is better to add
+hashes at the proper indentation level for every commented line. Your
+editor probably has the ability to do this easily, and it is worth
+learning the comment/uncomment toggle.</p>
+</div>
+<div class="section" id="docstrings-and-magic">
+<h3>Docstrings and Magic<a class="headerlink" href="#docstrings-and-magic" title="Permalink to this headline">¶</a></h3>
+<p>Some tools use docstrings to embed more-than-documentation behavior,
+such as unit test logic. Those can be nice, but you won&#8217;t ever go
+wrong with vanilla &#8220;here&#8217;s what this does.&#8221;</p>
+</div>
+<div class="section" id="docstrings-versus-block-comments">
+<h3>Docstrings versus Block comments<a class="headerlink" href="#docstrings-versus-block-comments" title="Permalink to this headline">¶</a></h3>
+<p>These aren&#8217;t interchangeable. For a function or class, the leading
+comment block is a programmer&#8217;s note. The docstring describes the
+operation of the function or class:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># This function slows down program execution for some reason.</span>
+<span class="k">def</span> <span class="nf">square_and_rooter</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Returns the square root of self times self.&quot;&quot;&quot;</span>
+    <span class="o">...</span>
+</pre></div>
+</div>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last">Further reading on docstrings: <span class="target" id="index-1"></span><a class="pep reference external" href="http://www.python.org/dev/peps/pep-0257"><strong>PEP 257</strong></a></p>
+</div>
+</div>
+</div>
+<div class="section" id="other-tools">
+<h2>Other Tools<a class="headerlink" href="#other-tools" title="Permalink to this headline">¶</a></h2>
+<p>You might see these in the wild. Use <a class="reference internal" href="#sphinx-ref"><em>Sphinx</em></a>.</p>
+<dl class="docutils">
+<dt><a class="reference external" href="http://fitzgen.github.com/pycco">Pycco</a></dt>
+<dd>Pycco is a &#8220;literate-programming-style documentation generator&#8221;
+and is a port of the node.js <a class="reference external" href="http://jashkenas.github.com/docco">Docco</a>. It makes code into a
+side-by-side HTML code and documentation.</dd>
+</dl>
+<dl class="docutils">
+<dt><a class="reference external" href="https://github.com/rtomayko/ronn">Ronn</a></dt>
+<dd>Ronn builds unix manuals. It converts human readable textfiles to roff for terminal display, and also to HTML for the web.</dd>
+</dl>
+<dl class="docutils">
+<dt><a class="reference external" href="http://epydoc.sourceforge.net">Epydoc</a></dt>
+<dd>Epydoc is discontinued. Use <a class="reference internal" href="#sphinx-ref"><em>Sphinx</em></a> instead.</dd>
+</dl>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper"><h1><a href="http://python-guide.org">Python指南.</a></h1>
+<p>
+  这份“傻逼”的指南旨在给Python的新老手们提供一个不错的参考书来安装、配置和使用Python
+</p>
+
+<h3>获取更新</h3>
+<p>收取更新消息</p>
+
+<p><a href="http://tinyletter.com/kennethreitz">订阅新闻邮件</a></p>
+
+<h3>捐助</h3>
+<p>
+    如果你喜欢这个指南，给作者捐点Money吧<a href="https://www.gittip.com/kennethreitz/">on Gittip</a>:
+</p>
+<p>
+  <iframe style="border: 0; margin: 0; padding: 0;"
+      src="https://www.gittip.com/kennethreitz/widget.html"
+      width="48pt" height="20pt"></iframe>
+</p>
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Documentation</a><ul>
+<li><a class="reference internal" href="#project-documentation">Project Documentation</a></li>
+<li><a class="reference internal" href="#project-publication">Project Publication</a><ul>
+<li><a class="reference internal" href="#sphinx">Sphinx</a></li>
+<li><a class="reference internal" href="#restructuredtext">reStructuredText</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#code-documentation-advice">Code Documentation Advice</a><ul>
+<li><a class="reference internal" href="#commenting-sections-of-code">Commenting Sections of Code</a></li>
+<li><a class="reference internal" href="#docstrings-and-magic">Docstrings and Magic</a></li>
+<li><a class="reference internal" href="#docstrings-versus-block-comments">Docstrings versus Block comments</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#other-tools">Other Tools</a></li>
+</ul>
+</li>
+</ul>
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="reading.html" title="previous chapter">Reading Great Code</a></li>
+      <li>Next: <a href="tests.html" title="next chapter">Testing Your Code</a></li>
+  </ul></li>
+</ul>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/writing/documentation.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy; Copyright 2013. A <a href="http://kennethreitz.com/pages/open-projects.html">Kenneth Reitz</a> Project. <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/"> Creative Commons Share-Alike 3.0</a>.
+    </div>
+    <a href="https://github.com/kennethreitz/python-guide" class="github">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" />
+    </a>
+
+    <script type="text/javascript">
+
+      var _gaq2 = _gaq2 || [];
+      _gaq2.push(['_setAccount', 'UA-8742933-10']);
+      _gaq2.push(['_setDomainName', 'none']);
+      _gaq2.push(['_setAllowLinker', true]);
+      _gaq2.push(['_trackPageview']);
+
+      (function() {
+        var ga2 = document.createElement('script'); ga2.type = 'text/javascript'; ga2.async = true;
+        ga2.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga2, s);
+      })();
+
+    </script>
+
+    <script type="text/javascript">
+      (function() {
+        var t   = document.createElement('script');
+        t.type  = 'text/javascript';
+        t.async = true;
+        t.id    = 'gauges-tracker';
+        t.setAttribute('data-site-id',
+                       '4ddc1cfaf5a1f50fcc000001');
+        t.src = '//secure.gaug.es/track.js';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(t, s);
+      })();
+    </script>
+  </body>
+</html>

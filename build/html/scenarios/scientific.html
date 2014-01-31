@@ -1,0 +1,299 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Scientific Applications &mdash; The Hitchhiker&#39;s Guide to Python</title>
+    
+    <link rel="stylesheet" href="../_static/flasky.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="The Hitchhiker&#39;s Guide to Python" href="../index.html" />
+    <link rel="next" title="Image Manipulation" href="imaging.html" />
+    <link rel="prev" title="Speed" href="speed.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="imaging.html" title="Image Manipulation"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="speed.html" title="Speed"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">The Hitchhiker&#39;s Guide to Python</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="scientific-applications">
+<h1>Scientific Applications<a class="headerlink" href="#scientific-applications" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="context">
+<h2>Context<a class="headerlink" href="#context" title="Permalink to this headline">¶</a></h2>
+<p>Python is frequently used for high-performance scientific applications. Python
+is widely used in academia and scientific projects because it is easy to write,
+and it performs really well.</p>
+<p>Due to its high performance nature, scientific computing in python often refers
+to external libraries, typically written in faster languages (like C, or
+FORTRAN for matrix operations). The main libraries used are <a class="reference external" href="http://numpy.scipy.org/">NumPy</a>, <a class="reference external" href="http://scipy.org/">SciPy</a>
+and <a class="reference external" href="http://matplotlib.sourceforge.net/">Matplotlib</a>. Going into detail about these libraries is beyond the scope
+of the Python guide. However, a comprehensive introduction to the scientific
+Python ecosystem can be found in the <a class="reference external" href="http://scipy-lectures.github.com/">Python Scientific Lecture Notes</a></p>
+</div>
+<div class="section" id="tools">
+<h2>Tools<a class="headerlink" href="#tools" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="ipython">
+<h3>IPython<a class="headerlink" href="#ipython" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="http://ipython.org/">IPytthon</a> is an enhanced version of Python interpreter.
+The features it provides are of great interest for the scientists. The <cite>inline mode</cite>
+allow graphics and plots to be displayed in the terminal (Qt based version).
+Moreover the <cite>notebook</cite> mode supports literate programming and reproducible science
+generating a web-based python notebook. This notebook allowing to store chunk of
+Python code along side to the results and additional comments (HTML, LaTeX, Markdown).
+The notebook could be shared and exported in various file formats.</p>
+</div>
+</div>
+<div class="section" id="libraries">
+<h2>Libraries<a class="headerlink" href="#libraries" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="numpy">
+<h3>NumPy<a class="headerlink" href="#numpy" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="http://numpy.scipy.org/">NumPy</a> is a low level library written in C (and
+FORTRAN) for high level mathematical functions. NumPy cleverly overcomes the
+problem of running slower algorithms on Python by using multidimensional arrays
+and functions that operate on arrays. Any algorithm can then be expressed as a
+function on arrays, allowing the algorithms to be run quickly.</p>
+<p>NumPy is part of the SciPy project, and is released as a separate library so
+people who only need the basic requirements can just use NumPy.</p>
+<p>NumPy is compatible with Python versions 2.4 through to 2.7.2 and 3.1+.</p>
+</div>
+<div class="section" id="numba">
+<h3>Numba<a class="headerlink" href="#numba" title="Permalink to this headline">¶</a></h3>
+<p>Numba is an Numpy aware Python compiler (just-in-time (JIT) specializing
+compiler) which compiles annotated Python (and Numpy) code to LLVM (Low Level
+Virtual Machine) (through special decorators).
+Briefly, Numba using system that compiles Python code with LLVM to code which
+can be natively executed at runtime.</p>
+</div>
+<div class="section" id="scipy">
+<h3>SciPy<a class="headerlink" href="#scipy" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="http://scipy.org/">SciPy</a> is a library that uses Numpy for more mathematical
+functions. SciPy uses NumPy arrays as the basic data structure. SciPy comes
+with modules for various commonly used tasks in scientific programing, for
+example: linear algebra, integration (calculus), ordinary differential equation
+solvers and signal processing.</p>
+</div>
+<div class="section" id="matplotlib">
+<h3>Matplotlib<a class="headerlink" href="#matplotlib" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="http://matplotlib.sourceforge.net/">Matplotlib</a> is a flexible plotting
+library for creating interactive 2D and 3D plots that can also be saved as
+manuscript-quality figures.  The API in many ways reflects that of <a class="reference external" href="http://www.mathworks.com/products/matlab/">MATLAB</a>, easing transition of MATLAB
+users to Python.  Many examples, along with the source code to re-create them,
+can be browsed at the <a class="reference external" href="http://matplotlib.sourceforge.net/gallery.html">matplotlib gallery</a>.</p>
+</div>
+<div class="section" id="pandas">
+<h3>Pandas<a class="headerlink" href="#pandas" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="http://pandas.pydata.org/">Pandas</a> is data manipulation library
+based on Numpy and which provides many useful functions for accessing,
+indexing, merging and grouping data easily. The main data structure (DataFrame)
+is close to what could be found in the R statistical package, that is
+an heterogeneous data tables with name indexing, time series operations
+and auto-alignement of data.</p>
+</div>
+<div class="section" id="rpy2">
+<h3>Rpy2<a class="headerlink" href="#rpy2" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="http://rpy.sourceforge.net/rpy2.html">Rpy2</a> is a Python binding for the R
+statistical package allowing to execute R functions from Python and passing
+data back and forth the two environments. Rpy2 is the object oriented
+implementation of the binding based on <a class="reference external" href="http://rpy.sourceforge.net/rpy.html">Rpy</a>.</p>
+</div>
+<div class="section" id="psychopy">
+<h3>PsychoPy<a class="headerlink" href="#psychopy" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="http://www.psychopy.org/">PsychoPy</a> is a library for cognitive scientists
+allowing to create cognitive psychology and neuroscience experiments. The library
+handles both presentation of stimuli, scripting of experimental design and
+data collection.</p>
+</div>
+</div>
+<div class="section" id="resources">
+<h2>Resources<a class="headerlink" href="#resources" title="Permalink to this headline">¶</a></h2>
+<p>Installation of scientific  Python packages can be troublesome. Many of these
+packages are implemented as Python C extensions which need to be compiled.
+This section lists various so-called scientific Python distributions which
+provide precompiled and easy-to-install collections of scientific Python
+packages.</p>
+<div class="section" id="unofficial-windows-binaries-for-python-extension-packages">
+<h3>Unofficial Windows Binaries for Python Extension Packages<a class="headerlink" href="#unofficial-windows-binaries-for-python-extension-packages" title="Permalink to this headline">¶</a></h3>
+<p>Many people who do scientific computing are on Windows. And yet many of the
+scientific computing packages are notoriously difficult to build and install.
+<a class="reference external" href="http://www.lfd.uci.edu/~gohlke/pythonlibs/">Christoph Gohlke</a> however, has
+compiled a list of Windows binaries for many useful Python packages. The list
+of packages has grown from a mainly scientific python resource to a more
+general list. It might be a good idea to check it out if you&#8217;re on Windows.</p>
+</div>
+<div class="section" id="enthought-python-distribution-epd">
+<h3>Enthought Python Distribution (EPD)<a class="headerlink" href="#enthought-python-distribution-epd" title="Permalink to this headline">¶</a></h3>
+<p>Installing NumPy and SciPy can be a daunting task. Which is why the
+<a class="reference external" href="http://enthought.com/">Enthought Python distribution</a> was created. With
+Enthought, scientific python has never been easier (one click to install about
+100 scientific python packages). The Enthought Python Distribution comes in two
+variants: a free version <a class="reference external" href="http://enthought.com/products/epd_free.php">EPD Free</a>
+and a paid version with various <a class="reference external" href="http://enthought.com/products/epd_sublevels.php">pricing options.</a></p>
+</div>
+<div class="section" id="anaconda">
+<h3>Anaconda<a class="headerlink" href="#anaconda" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="http://continuum.io/">Continuum Analytics</a> offers the <a class="reference external" href="https://store.continuum.io/cshop/anaconda">Anaconda
+Python Distribution</a> which
+includes all the common scientific python packages and additionally many
+packages related to data analytics and big data. Anaconda comes in two
+flavors, a paid for version and a completely free and open source community
+edition, Anaconda CE, which contains a slightly reduced feature set. Free
+licenses for the paid-for version are available for academics and researchers.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper"><h1><a href="http://python-guide.org">Python指南.</a></h1>
+<p>
+  这份“傻逼”的指南旨在给Python的新老手们提供一个不错的参考书来安装、配置和使用Python
+</p>
+
+<h3>获取更新</h3>
+<p>收取更新消息</p>
+
+<p><a href="http://tinyletter.com/kennethreitz">订阅新闻邮件</a></p>
+
+<h3>捐助</h3>
+<p>
+    如果你喜欢这个指南，给作者捐点Money吧<a href="https://www.gittip.com/kennethreitz/">on Gittip</a>:
+</p>
+<p>
+  <iframe style="border: 0; margin: 0; padding: 0;"
+      src="https://www.gittip.com/kennethreitz/widget.html"
+      width="48pt" height="20pt"></iframe>
+</p>
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Scientific Applications</a><ul>
+<li><a class="reference internal" href="#context">Context</a></li>
+<li><a class="reference internal" href="#tools">Tools</a><ul>
+<li><a class="reference internal" href="#ipython">IPython</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#libraries">Libraries</a><ul>
+<li><a class="reference internal" href="#numpy">NumPy</a></li>
+<li><a class="reference internal" href="#numba">Numba</a></li>
+<li><a class="reference internal" href="#scipy">SciPy</a></li>
+<li><a class="reference internal" href="#matplotlib">Matplotlib</a></li>
+<li><a class="reference internal" href="#pandas">Pandas</a></li>
+<li><a class="reference internal" href="#rpy2">Rpy2</a></li>
+<li><a class="reference internal" href="#psychopy">PsychoPy</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#resources">Resources</a><ul>
+<li><a class="reference internal" href="#unofficial-windows-binaries-for-python-extension-packages">Unofficial Windows Binaries for Python Extension Packages</a></li>
+<li><a class="reference internal" href="#enthought-python-distribution-epd">Enthought Python Distribution (EPD)</a></li>
+<li><a class="reference internal" href="#anaconda">Anaconda</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="speed.html" title="previous chapter">Speed</a></li>
+      <li>Next: <a href="imaging.html" title="next chapter">Image Manipulation</a></li>
+  </ul></li>
+</ul>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/scenarios/scientific.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy; Copyright 2013. A <a href="http://kennethreitz.com/pages/open-projects.html">Kenneth Reitz</a> Project. <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/"> Creative Commons Share-Alike 3.0</a>.
+    </div>
+    <a href="https://github.com/kennethreitz/python-guide" class="github">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" />
+    </a>
+
+    <script type="text/javascript">
+
+      var _gaq2 = _gaq2 || [];
+      _gaq2.push(['_setAccount', 'UA-8742933-10']);
+      _gaq2.push(['_setDomainName', 'none']);
+      _gaq2.push(['_setAllowLinker', true]);
+      _gaq2.push(['_trackPageview']);
+
+      (function() {
+        var ga2 = document.createElement('script'); ga2.type = 'text/javascript'; ga2.async = true;
+        ga2.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga2, s);
+      })();
+
+    </script>
+
+    <script type="text/javascript">
+      (function() {
+        var t   = document.createElement('script');
+        t.type  = 'text/javascript';
+        t.async = true;
+        t.id    = 'gauges-tracker';
+        t.setAttribute('data-site-id',
+                       '4ddc1cfaf5a1f50fcc000001');
+        t.src = '//secure.gaug.es/track.js';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(t, s);
+      })();
+    </script>
+  </body>
+</html>

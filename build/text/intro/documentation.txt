@@ -1,0 +1,24 @@
+
+Documentation
+*************
+
+
+Official Documentation
+======================
+
+The official Python Language and Library documentation can be found
+here:
+
+   * Python 2.x
+
+   * Python 3.x
+
+
+Read the Docs
+=============
+
+Read the Docs is a popular community project, providing a single
+location for all documentation of popular and even more exotic Python
+modules.
+
+   Read the Docs

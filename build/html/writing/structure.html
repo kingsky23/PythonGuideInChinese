@@ -1,0 +1,575 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Structuring Your Project &mdash; The Hitchhiker&#39;s Guide to Python</title>
+    
+    <link rel="stylesheet" href="../_static/flasky.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="The Hitchhiker&#39;s Guide to Python" href="../index.html" />
+    <link rel="next" title="Code Style" href="style.html" />
+    <link rel="prev" title="Installing Python on Linux" href="../starting/install/linux.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="style.html" title="Code Style"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../starting/install/linux.html" title="Installing Python on Linux"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">The Hitchhiker&#39;s Guide to Python</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="structuring-your-project">
+<h1>Structuring Your Project<a class="headerlink" href="#structuring-your-project" title="Permalink to this headline">¶</a></h1>
+<p>By &#8220;structure&#8221; we mean the decisions you make concerning
+how your project best meets its objective. We need to consider how to
+best leverage Python&#8217;s features to create clean, effective code.
+In practical terms, &#8220;structure&#8221; means making clean code whose logic and
+dependencies are clear as well as how the files and folders are organized
+in the filesystem.</p>
+<p>Which functions should go into which modules? How does data flow through
+the project? What features and functions can be grouped together and
+isolated? By answering questions like these you can begin to plan, in
+a broad sense, what your finished product will look like.</p>
+<p>In this section we take a closer look at Python&#8217;s module and import
+systems as they are the central element to enforcing structure in your
+project. We then discuss various perspectives on how to build code which
+can be extended and tested reliably.</p>
+<div class="section" id="structure-is-key">
+<h2>Structure is Key<a class="headerlink" href="#structure-is-key" title="Permalink to this headline">¶</a></h2>
+<p>Thanks to the way imports and modules are handled in Python, it is
+relatively easy to structure a Python project. Easy, here, means
+that you do not have many constraints and that the module
+importing model is easy to grasp. Therefore, you are left with the
+pure architectural task of crafting the different parts of your
+project and their interactions.</p>
+<p>Easy structuring of a project means it is also easy
+to do it poorly. Some signs of a poorly structured project
+include:</p>
+<ul class="simple">
+<li>Multiple and messy circular dependencies: if your classes
+Table and Chair in furn.py need to import Carpenter from workers.py
+to answer a question such as <tt class="docutils literal"><span class="pre">table.isdoneby()</span></tt>,
+and if conversely the class Carpenter needs to import Table and Chair,
+to answer the question <tt class="docutils literal"><span class="pre">carpenter.whatdo()</span></tt>, then you
+have a circular dependency. In this case you will have to resort to
+fragile hacks such as using import statements inside
+methods or functions.</li>
+<li>Hidden coupling: each and every change in Table&#8217;s implementation
+breaks 20 tests in unrelated test cases because it breaks Carpenter&#8217;s code,
+which requires very careful surgery to adapt the change. This means
+you have too many assumptions about Table in Carpenter&#8217;s code or the
+reverse.</li>
+<li>Heavy usage of global state or context: instead of explicitly
+passing <tt class="docutils literal"><span class="pre">(height,</span> <span class="pre">width,</span> <span class="pre">type,</span> <span class="pre">wood)</span></tt> to each other, Table
+and Carpenter rely on global variables that can be modified
+and are modified on the fly by different agents. You need to
+scrutinize all access to these global variables to understand why
+a rectangular table became a square, and discover that remote
+template code is also modifying this context, messing with
+table dimensions.</li>
+<li>Spaghetti code: multiple pages of nested if clauses and for loops
+with a lot of copy-pasted procedural code and no
+proper segmentation are known as spaghetti code. Python&#8217;s
+meaningful indentation (one of its most controversial features) make
+it very hard to maintain this kind of code. So the good news is that
+you might not see too much of it.</li>
+<li>Ravioli code is more likely in Python: it consists of hundreds of
+similar little pieces of logic, often classes or objects, without
+proper structure. If you never can remember if you have to use
+FurnitureTable, AssetTable or Table, or even TableNew for your
+task at hand, you might be swimming in ravioli code.</li>
+</ul>
+</div>
+<div class="section" id="modules">
+<h2>Modules<a class="headerlink" href="#modules" title="Permalink to this headline">¶</a></h2>
+<p>Python modules are one of the main abstraction layers available and probably the
+most natural one. Abstraction layers allow separating code into parts holding
+related data and functionality.</p>
+<p>For example, a layer of a project can handle interfacing with user actions,
+while another would handle low-level manipulation of data. The most natural way
+to separate these two layers is to regroup all interfacing functionality
+in one file, and all low-level operations in another file. In this case,
+the interface file needs to import the low-level file. This is done with the
+<tt class="docutils literal"><span class="pre">import</span></tt> and <tt class="docutils literal"><span class="pre">from</span> <span class="pre">...</span> <span class="pre">import</span></tt> statements.</p>
+<p>As soon as you use <cite>import</cite> statements you use modules. These can be either built-in
+modules such as <cite>os</cite> and <cite>sys</cite>, third-party modules you have installed in your
+environment, or your project&#8217;s internal modules.</p>
+<p>To keep in line with the style guide, keep module names short, lowercase, and
+be sure to avoid using special symbols like the dot (.) or question mark (?).
+So a file name like <cite>my.spam.py</cite> is one you should avoid! Naming this way
+will interfere with the way python looks for modules.</p>
+<p>In this example python expects to find a &#8220;spam.py&#8221; file in a folder named &#8220;my&#8221;
+which is not the case. There is an
+<a class="reference external" href="http://docs.python.org/tutorial/modules.html#packages">example</a> of how the
+dot notation should be used in the python docs.</p>
+<p>If you&#8217;d like you could name it as <cite>my_spam.py</cite> but even our friend the
+underscore should not be seen often in module names.</p>
+<p>Aside for some naming restrictions, nothing special is required for a Python file
+to be a module, but the import mechanism needs to be understood in order to use
+this concept properly and avoid some issues.</p>
+<p>Concretely, the <tt class="docutils literal"><span class="pre">import</span> <span class="pre">modu</span></tt> statement will look for the proper file, which is
+<cite>modu.py</cite> in the same directory as the caller if it exists.  If it is not
+found, the Python interpreter will search for <cite>modu.py</cite> in the &#8220;path&#8221;
+recursively and raise an ImportError exception if it is not found.</p>
+<p>Once <cite>modu.py</cite> is found, the Python interpreter will execute the module in an
+isolated scope. Any top-level statement in <cite>modu.py</cite> will be executed,
+including other imports if any. Function and class definitions are stored in
+the module&#8217;s dictionary.</p>
+<p>Then, the module&#8217;s variables, functions, and classes will be available to the caller
+through the module&#8217;s namespace, a central concept in programming that is
+particularly helpful and powerful in Python.</p>
+<p>In many languages, an <tt class="docutils literal"><span class="pre">include</span> <span class="pre">file</span></tt> directive is used by the preprocessor to
+take all code found in the file and &#8216;copy&#8217; it into the caller&#8217;s code. It is
+different in Python: the included code is isolated in a module namespace, which
+means that you generally don&#8217;t have to worry that the included code could have
+unwanted effects, e.g. override an existing function with the same name.</p>
+<p>It is possible to simulate the more standard behavior by using a special syntax
+of the import statement: <tt class="docutils literal"><span class="pre">from</span> <span class="pre">modu</span> <span class="pre">import</span> <span class="pre">*</span></tt>. This is generally considered bad
+practice. <strong>Using ``import *`` makes code harder to read and makes dependencies less
+compartmentalized</strong>.</p>
+<p>Using <tt class="docutils literal"><span class="pre">from</span> <span class="pre">modu</span> <span class="pre">import</span> <span class="pre">func</span></tt> is a way to pinpoint the function you want to
+import and put it in the global namespace. While much less harmful than <tt class="docutils literal"><span class="pre">import</span>
+<span class="pre">*</span></tt> because it shows explicitly what is imported in the global namespace, its
+advantage over a simpler <cite>import modu</cite> is only that it will save some typing.</p>
+<p><strong>Very bad</strong></p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">[</span><span class="o">...</span><span class="p">]</span>
+<span class="kn">from</span> <span class="nn">modu</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="p">[</span><span class="o">...</span><span class="p">]</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">sqrt</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>  <span class="c"># Is sqrt part of modu? A builtin? Defined above?</span>
+</pre></div>
+</div>
+<p><strong>Better</strong></p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">modu</span> <span class="kn">import</span> <span class="n">sqrt</span>
+<span class="p">[</span><span class="o">...</span><span class="p">]</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">sqrt</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>  <span class="c"># sqrt may be part of modu, if not redefined in between</span>
+</pre></div>
+</div>
+<p><strong>Best</strong></p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">modu</span>
+<span class="p">[</span><span class="o">...</span><span class="p">]</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">modu</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>  <span class="c"># sqrt is visibly part of modu&#39;s namespace</span>
+</pre></div>
+</div>
+<p>As said in the section about style, readability is one of the main features of
+Python. Readability means to avoid useless boilerplate text and clutter,
+therefore some efforts are spent trying to achieve a certain level of brevity.
+But terseness and obscurity are the limits where brevity should stop. Being
+able to tell immediately where a class or function comes from, as in the
+<tt class="docutils literal"><span class="pre">modu.func</span></tt> idiom, greatly improves code readability and understandability in
+all but the simplest single file projects.</p>
+</div>
+<div class="section" id="packages">
+<h2>Packages<a class="headerlink" href="#packages" title="Permalink to this headline">¶</a></h2>
+<p>Python provides a very straightforward packaging system, which is simply an
+extension of the module mechanism to a directory.</p>
+<p>Any directory with an __init__.py file is considered a Python package. The
+different modules in the package are imported in a similar manner as plain
+modules, but with a special behavior for the __init__.py file, which is used to
+gather all package-wide definitions.</p>
+<p>A file modu.py in the directory pack/ is imported with the statement <cite>import
+pack.modu</cite>. This statement will look for an __init__.py file in <cite>pack</cite>, execute
+all of its top-level statements. Then it will look for a file <cite>pack/modu.py</cite> and
+execute all of its top-level statements. After these operations, any variable,
+function, or class defined in modu.py is available in the pack.modu namespace.</p>
+<p>A commonly seen issue is to add too much code to __init__.py
+files. When the project complexity grows, there may be sub-packages and
+sub-sub-packages in a deep directory structure, and then, importing a single item
+from a sub-sub-package will require executing all __init__.py files met while
+traversing the tree.</p>
+<p>Leaving an __init__.py file empty is considered normal and even a good practice,
+if the package&#8217;s modules and sub-packages do not need to share any code.</p>
+<p>Lastly, a convenient syntax is available for importing deeply nested packages:
+<cite>import very.deep.module as mod</cite>. This allows you to use <cite>mod</cite> in place of the verbose
+repetition of <cite>very.deep.module</cite>.</p>
+</div>
+<div class="section" id="object-oriented-programming">
+<h2>Object-oriented programming<a class="headerlink" href="#object-oriented-programming" title="Permalink to this headline">¶</a></h2>
+<p>Python is sometimes described as an object-oriented programming language. This
+can be somewhat misleading and needs to be clarified.</p>
+<p>In Python, everything is an object, and can be handled as such. This is what is
+meant when we say that, for example, functions are first-class objects.
+Functions, classes, strings, and even types are objects in Python: like any
+objects, they have a type, they can be passed as function arguments, they may
+have methods and properties. In this understanding, Python is an
+object-oriented language.</p>
+<p>However, unlike Java, Python does not impose object-oriented programming as the
+main programming paradigm. It is perfectly viable for a Python project to not
+be object-oriented, i.e. to use no or very few class definitions, class
+inheritance, or any other mechanisms that are specific to object-oriented
+programming.</p>
+<p>Moreover, as seen in the <a class="reference internal" href="#modules">modules</a> section, the way Python handles modules and
+namespaces gives the developer a natural way to ensure the
+encapsulation and separation of abstraction layers, both being the most common
+reasons to use object-orientation. Therefore, Python programmers have more
+latitude to not use object-orientation, when it is not required by the business
+model.</p>
+<p>There are some reasons to avoid unnecessary object-orientation. Defining
+custom classes is useful when we want to glue together some state and some
+functionality. The problem, as pointed out by the discussions about functional
+programming, comes from the &#8220;state&#8221; part of the equation.</p>
+<p>In some architectures, typically web applications, multiple instances of Python
+processes are spawned to respond to external requests that can
+happen at the same time. In this case, holding some state into instantiated
+objects, which means keeping some static information about the world, is prone
+to concurrency problems or race-conditions. Sometimes, between the initialization of
+the state of an object (usually done with the <tt class="docutils literal"><span class="pre">__init__()</span></tt> method) and the actual use
+of the object state through one of its methods, the world may have changed, and
+the retained state may be outdated. For example, a request may load an item in
+memory and mark it as read by a user. If another request requires the deletion
+of this item at the same time, it may happen that the deletion actually occurs after
+the first process loaded the item, and then we have to mark as read a deleted
+object.</p>
+<p>This and other issues led to the idea that using stateless functions is a
+better programming paradigm.</p>
+<p>Another way to say the same thing is to suggest using functions and procedures
+with as few implicit contexts and side-effects as possible. A function&#8217;s
+implicit context is made up of any of the global variables or items in the persistence layer
+that are accessed from within the function. Side-effects are the changes that a function makes
+to its implicit context. If a function saves or deletes data in a global variable or
+in the persistence layer, it is said to have a side-effect.</p>
+<p>Carefully isolating functions with context and side-effects from functions with
+logic (called pure functions) allow the following benefits:</p>
+<ul class="simple">
+<li>Pure functions are deterministic: given a fixed input,
+the output will always be the same.</li>
+<li>Pure functions are much easier to change or replace if they need to
+be refactored or optimized.</li>
+<li>Pure functions are easier to test with unit-tests: There is less
+need for complex context setup and data cleaning afterwards.</li>
+<li>Pure functions are easier to manipulate, decorate, and pass-around.</li>
+</ul>
+<p>In summary, pure functions, without any context or side-effects, are more
+efficient building blocks than classes and objects for some architectures.</p>
+<p>Obviously, object-orientation is useful and even necessary in many cases, for
+example when developing graphical desktop applications or games, where the
+things that are manipulated (windows, buttons, avatars, vehicles) have a
+relatively long life of their own in the computer&#8217;s memory.</p>
+</div>
+<div class="section" id="decorators">
+<h2>Decorators<a class="headerlink" href="#decorators" title="Permalink to this headline">¶</a></h2>
+<p>The Python language provides a simple yet powerful syntax called &#8216;decorators&#8217;.
+A decorator is a function or a class that wraps (or decorates) a function
+or a method. The &#8216;decorated&#8217; function or method will replace the original
+&#8216;undecorated&#8217; function or method. Because functions are first-class objects
+in Python, it can be done &#8216;manually&#8217;, but using the &#64;decorator syntax is
+clearer and thus preferred.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">foo</span><span class="p">():</span>
+    <span class="c"># do something</span>
+
+<span class="k">def</span> <span class="nf">decorator</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+    <span class="c"># manipulate func</span>
+    <span class="k">return</span> <span class="n">func</span>
+
+<span class="n">foo</span> <span class="o">=</span> <span class="n">decorator</span><span class="p">(</span><span class="n">foo</span><span class="p">)</span>  <span class="c"># Manually decorate</span>
+
+<span class="nd">@decorator</span>
+<span class="k">def</span> <span class="nf">bar</span><span class="p">():</span>
+    <span class="c"># Do something</span>
+<span class="c"># bar() is decorated</span>
+</pre></div>
+</div>
+<p>This mechanism is useful for separating concerns and avoiding
+external un-related logic &#8216;polluting&#8217; the core logic of the function
+or method. A good example of a piece of functionality that is better handled
+with decoration is memoization or caching: you want to store the results of an
+expensive function in a table and use them directly instead of recomputing
+them when they have already been computed. This is clearly not part
+of the function logic.</p>
+</div>
+<div class="section" id="dynamic-typing">
+<h2>Dynamic typing<a class="headerlink" href="#dynamic-typing" title="Permalink to this headline">¶</a></h2>
+<p>Python is said to be dynamically typed, which means that variables
+do not have a fixed type. In fact, in Python, variables are very
+different from what they are in many other languages, specifically
+strongly-typed languages. Variables are not a segment of the computer&#8217;s
+memory where some value is written, they are &#8216;tags&#8217; or &#8216;names&#8217; pointing
+to objects. It is therefore possible for the variable &#8216;a&#8217; to be set to
+the value 1, then to the value &#8216;a string&#8217;, then to a function.</p>
+<p>The dynamic typing of Python is often considered to be a weakness, and indeed
+it can lead to complexities and hard-to-debug code. Something
+named &#8216;a&#8217; can be set to many different things, and the developer or the
+maintainer needs to track this name in the code to make sure it has not
+been set to a completely unrelated object.</p>
+<p>Some guidelines help to avoid this issue:</p>
+<ul class="simple">
+<li>Avoid using the same variable name for different things.</li>
+</ul>
+<p><strong>Bad</strong></p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">a</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">a</span> <span class="o">=</span> <span class="s">&#39;a string&#39;</span>
+<span class="k">def</span> <span class="nf">a</span><span class="p">():</span>
+    <span class="k">pass</span>  <span class="c"># Do something</span>
+</pre></div>
+</div>
+<p><strong>Good</strong></p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">count</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">msg</span> <span class="o">=</span> <span class="s">&#39;a string&#39;</span>
+<span class="k">def</span> <span class="nf">func</span><span class="p">():</span>
+    <span class="k">pass</span>  <span class="c"># Do something</span>
+</pre></div>
+</div>
+<p>Using short functions or methods helps reduce the risk
+of using the same name for two unrelated things.</p>
+<p>It is better to use different names even for things that are related,
+when they have a different type:</p>
+<p><strong>Bad</strong></p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">items</span> <span class="o">=</span> <span class="s">&#39;a b c d&#39;</span>  <span class="c"># This is a string...</span>
+<span class="n">items</span> <span class="o">=</span> <span class="n">items</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39; &#39;</span><span class="p">)</span>  <span class="c"># ...becoming a list</span>
+<span class="n">items</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">items</span><span class="p">)</span>  <span class="c"># ...and then a set</span>
+</pre></div>
+</div>
+<p>There is no efficiency gain when reusing names: the assignments
+will have to create new objects anyway. However, when the complexity
+grows and each assignment is separated by other lines of code, including
+&#8216;if&#8217; branches and loops, it becomes harder to ascertain what a given
+variable&#8217;s type is.</p>
+<p>Some coding practices, like functional programming, recommend never reassigning a variable.
+In Java this is done with the <cite>final</cite> keyword. Python does not have a <cite>final</cite> keyword
+and it would be against its philosophy anyway. However, it may be a good
+discipline to avoid assigning to a variable more than once, and it helps
+in grasping the concept of mutable and immutable types.</p>
+</div>
+<div class="section" id="mutable-and-immutable-types">
+<h2>Mutable and immutable types<a class="headerlink" href="#mutable-and-immutable-types" title="Permalink to this headline">¶</a></h2>
+<p>Python has two kinds of built-in or user-defined types.</p>
+<p>Mutable types are those that allow in-place modification
+of the content. Typical mutables are lists and dictionaries:
+All lists have mutating methods, like <tt class="xref py py-meth docutils literal"><span class="pre">list.append()</span></tt> or <tt class="xref py py-meth docutils literal"><span class="pre">list.pop()</span></tt>, and
+can be modified in place. The same goes for dictionaries.</p>
+<p>Immutable types provide no method for changing their content.
+For instance, the variable x set to the integer 6 has no &#8220;increment&#8221; method. If you
+want to compute x + 1, you have to create another integer and give it
+a name.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">my_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="n">my_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="k">print</span> <span class="n">my_list</span>  <span class="c"># [4, 2, 3] &lt;- The same list as changed</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="mi">6</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">1</span>  <span class="c"># The new x is another object</span>
+</pre></div>
+</div>
+<p>One consequence of this difference in behavior is that mutable
+types are not &#8220;stable&#8221;, and therefore cannot be used as dictionary
+keys.</p>
+<p>Using properly mutable types for things that are mutable in nature
+and immutable types for things that are fixed in nature
+helps to clarify the intent of the code.</p>
+<p>For example, the immutable equivalent of a list is the tuple, created
+with <tt class="docutils literal"><span class="pre">(1,</span> <span class="pre">2)</span></tt>. This tuple is a pair that cannot be changed in-place,
+and can be used as a key for a dictionary.</p>
+<p>One peculiarity of Python that can surprise beginners is that
+strings are immutable. This means that when constructing a string from
+its parts, it is much more efficient to accumulate the parts in a list,
+which is mutable, and then glue (&#8216;join&#8217;) the parts together when the
+full string is needed. One thing to notice, however, is that list
+comprehensions are better and faster than constructing a list in a loop
+with calls to <tt class="docutils literal"><span class="pre">append()</span></tt>.</p>
+<p><strong>Bad</strong></p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># create a concatenated string from 0 to 19 (e.g. &quot;012..1819&quot;)</span>
+<span class="n">nums</span> <span class="o">=</span> <span class="s">&quot;&quot;</span>
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">20</span><span class="p">):</span>
+  <span class="n">nums</span> <span class="o">+=</span> <span class="nb">str</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>   <span class="c"># slow and inefficient</span>
+<span class="k">print</span> <span class="n">nums</span>
+</pre></div>
+</div>
+<p><strong>Good</strong></p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># create a concatenated string from 0 to 19 (e.g. &quot;012..1819&quot;)</span>
+<span class="n">nums</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">20</span><span class="p">):</span>
+  <span class="n">nums</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+<span class="k">print</span> <span class="s">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span>  <span class="c"># much more efficient</span>
+</pre></div>
+</div>
+<p><strong>Best</strong></p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># create a concatenated string from 0 to 19 (e.g. &quot;012..1819&quot;)</span>
+<span class="n">nums</span> <span class="o">=</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">20</span><span class="p">)]</span>
+<span class="k">print</span> <span class="s">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>One final thing to mention about strings is that using <tt class="docutils literal"><span class="pre">join()</span></tt> is not always
+best. In the instances where you are creating a new string from a pre-determined
+number of strings, using the addition operator is actually faster, but in cases
+like above or in cases where you are adding to an existing string, using <tt class="docutils literal"><span class="pre">join()</span></tt>
+should be your preferred method.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">foo</span> <span class="o">=</span> <span class="s">&#39;foo&#39;</span>
+<span class="n">bar</span> <span class="o">=</span> <span class="s">&#39;bar&#39;</span>
+
+<span class="n">foobar</span> <span class="o">=</span> <span class="n">foo</span> <span class="o">+</span> <span class="n">bar</span>  <span class="c"># This is good</span>
+<span class="n">foo</span> <span class="o">+=</span> <span class="s">&#39;ooo&#39;</span>  <span class="c"># This is bad, instead you should do:</span>
+<span class="n">foo</span> <span class="o">=</span> <span class="s">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">foo</span><span class="p">,</span> <span class="s">&#39;ooo&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">You can also use the <a class="reference external" href="http://docs.python.org/library/stdtypes.html#string-formatting" title="(in Python v2.7)"><em class="xref std std-ref">%</em></a> formatting operator
+to concatenate a pre-determined number of strings besides <a class="reference external" href="http://docs.python.org/library/stdtypes.html#str.join" title="(in Python v2.7)"><tt class="xref py py-meth docutils literal"><span class="pre">str.join()</span></tt></a>
+and <tt class="docutils literal"><span class="pre">+</span></tt>. However, according to <span class="target" id="index-0"></span><a class="pep reference external" href="http://www.python.org/dev/peps/pep-3101"><strong>PEP 3101</strong></a>, the <tt class="docutils literal"><span class="pre">%</span></tt> operator became
+deprecated in Python 3.1 and will be replaced by the <a class="reference external" href="http://docs.python.org/library/stdtypes.html#str.format" title="(in Python v2.7)"><tt class="xref py py-meth docutils literal"><span class="pre">str.format()</span></tt></a>
+method in the later versions.</p>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">foo</span> <span class="o">=</span> <span class="s">&#39;foo&#39;</span>
+<span class="n">bar</span> <span class="o">=</span> <span class="s">&#39;bar&#39;</span>
+
+<span class="n">foobar</span> <span class="o">=</span> <span class="s">&#39;</span><span class="si">%s%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">foo</span><span class="p">,</span> <span class="n">bar</span><span class="p">)</span> <span class="c"># It is OK</span>
+<span class="n">foobar</span> <span class="o">=</span> <span class="s">&#39;{0}{1}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">foo</span><span class="p">,</span> <span class="n">bar</span><span class="p">)</span> <span class="c"># It is better</span>
+<span class="n">foobar</span> <span class="o">=</span> <span class="s">&#39;{foo}{bar}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">foo</span><span class="o">=</span><span class="n">foo</span><span class="p">,</span> <span class="n">bar</span><span class="o">=</span><span class="n">bar</span><span class="p">)</span> <span class="c"># It is best</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="vendorizing-dependencies">
+<h2>Vendorizing Dependencies<a class="headerlink" href="#vendorizing-dependencies" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="runners">
+<h2>Runners<a class="headerlink" href="#runners" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="further-reading">
+<h2>Further Reading<a class="headerlink" href="#further-reading" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference external" href="http://docs.python.org/2/library/">http://docs.python.org/2/library/</a></li>
+<li><a class="reference external" href="http://www.diveintopython.net/toc/index.html">http://www.diveintopython.net/toc/index.html</a></li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper"><h1><a href="http://python-guide.org">Python指南.</a></h1>
+<p>
+  这份“傻逼”的指南旨在给Python的新老手们提供一个不错的参考书来安装、配置和使用Python
+</p>
+
+<h3>获取更新</h3>
+<p>收取更新消息</p>
+
+<p><a href="http://tinyletter.com/kennethreitz">订阅新闻邮件</a></p>
+
+<h3>捐助</h3>
+<p>
+    如果你喜欢这个指南，给作者捐点Money吧<a href="https://www.gittip.com/kennethreitz/">on Gittip</a>:
+</p>
+<p>
+  <iframe style="border: 0; margin: 0; padding: 0;"
+      src="https://www.gittip.com/kennethreitz/widget.html"
+      width="48pt" height="20pt"></iframe>
+</p>
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Structuring Your Project</a><ul>
+<li><a class="reference internal" href="#structure-is-key">Structure is Key</a></li>
+<li><a class="reference internal" href="#modules">Modules</a></li>
+<li><a class="reference internal" href="#packages">Packages</a></li>
+<li><a class="reference internal" href="#object-oriented-programming">Object-oriented programming</a></li>
+<li><a class="reference internal" href="#decorators">Decorators</a></li>
+<li><a class="reference internal" href="#dynamic-typing">Dynamic typing</a></li>
+<li><a class="reference internal" href="#mutable-and-immutable-types">Mutable and immutable types</a></li>
+<li><a class="reference internal" href="#vendorizing-dependencies">Vendorizing Dependencies</a></li>
+<li><a class="reference internal" href="#runners">Runners</a></li>
+<li><a class="reference internal" href="#further-reading">Further Reading</a></li>
+</ul>
+</li>
+</ul>
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="../starting/install/linux.html" title="previous chapter">Installing Python on Linux</a></li>
+      <li>Next: <a href="style.html" title="next chapter">Code Style</a></li>
+  </ul></li>
+</ul>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/writing/structure.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy; Copyright 2013. A <a href="http://kennethreitz.com/pages/open-projects.html">Kenneth Reitz</a> Project. <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/"> Creative Commons Share-Alike 3.0</a>.
+    </div>
+    <a href="https://github.com/kennethreitz/python-guide" class="github">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" />
+    </a>
+
+    <script type="text/javascript">
+
+      var _gaq2 = _gaq2 || [];
+      _gaq2.push(['_setAccount', 'UA-8742933-10']);
+      _gaq2.push(['_setDomainName', 'none']);
+      _gaq2.push(['_setAllowLinker', true]);
+      _gaq2.push(['_trackPageview']);
+
+      (function() {
+        var ga2 = document.createElement('script'); ga2.type = 'text/javascript'; ga2.async = true;
+        ga2.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga2, s);
+      })();
+
+    </script>
+
+    <script type="text/javascript">
+      (function() {
+        var t   = document.createElement('script');
+        t.type  = 'text/javascript';
+        t.async = true;
+        t.id    = 'gauges-tracker';
+        t.setAttribute('data-site-id',
+                       '4ddc1cfaf5a1f50fcc000001');
+        t.src = '//secure.gaug.es/track.js';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(t, s);
+      })();
+    </script>
+  </body>
+</html>

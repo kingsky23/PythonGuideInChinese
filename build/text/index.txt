@@ -1,0 +1,355 @@
+
+昌旭翻译的Hitchhiker的Python指南
+********************************
+
+欢迎阅读《Hitchhiker的Python指南》
+
+**当前这份文档的开发工作很重**，如果你乐意帮忙，请在GitHub上fork我们
+
+这份“傻逼”的指南旨在给Python的新老手们提供一个不错的参考书来安装、 配
+置和使用Python
+
+
+入门
+====
+
+这部分指南旨在教你如何搭建你自己的Python开发环境
+
+* 选择一个解析器
+
+  * 当前 (Python 2)
+
+  * 未来 (Python 3)
+
+  * 实现
+
+* 正确安装Python
+
+   * Installing Python on Mac OS X
+
+   * Installing Python on Windows
+
+   * 在Linux上安装Python
+
+
+编写牛逼的代码
+==============
+
+这部分指南提供了一些编写Python时的好的经验与技巧
+
+* Structuring Your Project
+
+  * Structure is Key
+
+  * Modules
+
+  * Packages
+
+  * Object-oriented programming
+
+  * Decorators
+
+  * Dynamic typing
+
+  * Mutable and immutable types
+
+  * Vendorizing Dependencies
+
+  * Runners
+
+  * Further Reading
+
+* Code Style
+
+  * General concepts
+
+  * Idioms
+
+  * Zen of Python
+
+  * PEP 8
+
+  * Conventions
+
+* Reading Great Code
+
+* Documentation
+
+  * Project Documentation
+
+  * Project Publication
+
+  * Code Documentation Advice
+
+  * Other Tools
+
+* Testing Your Code
+
+  * The Basics
+
+  * Tools
+
+* Common Gotchas
+
+  * Mutable Default Arguments
+
+  * Late Binding Closures
+
+* Choosing a License
+
+
+Scenario Guide( 不知道怎么翻译准确 )
+====================================
+
+这部分指南描述了不同情况下使用Python模块和工具的建议
+
+* Network Applications
+
+  * HTTP
+
+  * Distributed Systems
+
+* Web Applications
+
+  * Context
+
+  * Frameworks
+
+  * Web Servers
+
+  * WSGI Servers
+
+  * Server Best Practices
+
+  * Hosting
+
+  * Templating
+
+* HTML Scraping
+
+  * Web Scraping
+
+  * lxml and Requests
+
+* Command Line Applications
+
+  * Clint
+
+  * docopt
+
+* GUI Applications
+
+  * Qt
+
+  * Cocoa
+
+  * wxPython
+
+  * GTk
+
+  * Tk
+
+  * Kivy
+
+  * PyjamasDesktop (pyjs Desktop)
+
+  * Camelot
+
+* Databases
+
+  * DB-API
+
+  * SQLAlchemy
+
+  * Django ORM
+
+* Networking
+
+  * Twisted
+
+  * PyZMQ
+
+  * gevent
+
+* Systems Administration
+
+  * Fabric
+
+  * Salt
+
+  * Psutil
+
+  * Chef
+
+  * Puppet
+
+  * Blueprint
+
+  * Buildout
+
+* Continuous Integration
+
+  * Why?
+
+  * Jenkins
+
+  * Buildbot
+
+  * Mule?
+
+  * Tox
+
+  * Travis-CI
+
+* Speed
+
+  * Context
+
+  * C Extensions
+
+  * Threading
+
+* Scientific Applications
+
+  * Context
+
+  * Tools
+
+  * Libraries
+
+  * Resources
+
+* Image Manipulation
+
+  * Python Imaging Library
+
+* XML parsing
+
+  * untangle
+
+  * xmltodict
+
+
+Shipping Great Code( 维护代码？部署代码？不会翻译了 )
+=====================================================
+
+这部分指南将教你如何部署自己的Python代码
+
+* Packaging Your Code
+
+  * For Python Developers
+
+  * For Linux Distributions
+
+* Freezing Your Code
+
+  * Comparison
+
+  * Windows
+
+  * OSX
+
+  * Linux
+
+
+开发环境
+========
+
+* Your Development Environment
+
+  * Text Editors
+
+  * IDEs
+
+  * Interpreter Tools
+
+  * Other Tools
+
+* Virtual Environments
+
+  * virtualenv
+
+  * virtualenvwrapper
+
+  * autoenv
+
+
+备注
+====
+
+这部分指南是最枯燥的部分，包含一些Python的背景知识
+
+* Introduction
+
+  * About This Guide
+
+* The Community
+
+  * BDFL
+
+  * Python Software Foundation
+
+  * PEPs
+
+  * Python Conferences
+
+  * Python User Groups
+
+* Learning Python
+
+  * Beginner
+
+  * Advanced
+
+  * For Engineers and Scientists
+
+  * References
+
+* Documentation
+
+  * Official Documentation
+
+  * Read the Docs
+
+* News
+
+  * Planet Python
+
+  * /r/python
+
+  * Pycoder's Weekly
+
+  * Python Weekly
+
+  * Python News
+
+======================================================================
+
+Contribution notes and legal information are here (for those
+interested).( 这句不会翻译 )
+
+* Contribute
+
+  * Style Guide
+
+  * Todo List
+
+* License
+
+* The Guide Style Guide
+
+  * Relevancy
+
+  * Headings
+
+  * Prose
+
+  * Code Examples
+
+  * Externally Linking
+
+  * Linking to Sections in The Guide
+
+  * Notes and Warnings
+
+  * TODOs

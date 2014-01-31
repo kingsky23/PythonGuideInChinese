@@ -1,0 +1,521 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Web Applications &mdash; The Hitchhiker&#39;s Guide to Python</title>
+    
+    <link rel="stylesheet" href="../../_static/flasky.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="The Hitchhiker&#39;s Guide to Python" href="../../" />
+    <link rel="next" title="HTML Scraping" href="../scrape/" />
+    <link rel="prev" title="Network Applications" href="../client/" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex/" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../scrape/" title="HTML Scraping"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../client/" title="Network Applications"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../../">The Hitchhiker&#39;s Guide to Python</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="web-applications">
+<h1>Web Applications<a class="headerlink" href="#web-applications" title="Permalink to this headline">¶</a></h1>
+<p>As a powerful scripting language adapted to both fast prototyping
+and bigger projects, Python is widely used in Web applications
+development.</p>
+<div class="section" id="context">
+<h2>Context<a class="headerlink" href="#context" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="wsgi">
+<h3>WSGI<a class="headerlink" href="#wsgi" title="Permalink to this headline">¶</a></h3>
+<p>The Web Server Gateway Interface (or &#8220;WSGI&#8221; for short) is a standard
+interface between web servers and Python web application frameworks. By
+standardizing behavior and communication between web servers and Python web
+frameworks, WSGI makes it possible to write portable Python web code that
+can be deployed in any <a class="reference internal" href="#wsgi-servers-ref"><em>WSGI-compliant web server</em></a>.
+WSGI is documented in <span class="target" id="index-0"></span><a class="pep reference external" href="http://www.python.org/dev/peps/pep-3333"><strong>PEP 3333</strong></a>.</p>
+</div>
+</div>
+<div class="section" id="frameworks">
+<h2>Frameworks<a class="headerlink" href="#frameworks" title="Permalink to this headline">¶</a></h2>
+<p>Broadly speaking, a web framework consist of a set of libraries and a main
+handler within which you can build custom code to implement a web application
+(i.e. an interactive web site). Most web frameworks include patterns and
+utilities to accomplish at least the following:</p>
+<dl class="docutils">
+<dt>URL Routing</dt>
+<dd>Matches an incoming HTTP request to a particular piece of Python code to
+be invoked</dd>
+<dt>Request and Response Objects</dt>
+<dd>Encapsulate the information received from or sent to a user&#8217;s browser</dd>
+<dt>Template Engine</dt>
+<dd>Allows for separating Python code implementing an application&#8217;s logic from
+the HTML (or other) output that it produces</dd>
+<dt>Development Web Server</dt>
+<dd>Runs an HTTP server on development machines to enable rapid development;
+often automatically reloads server-side code when files are updated</dd>
+</dl>
+<div class="section" id="django">
+<h3>Django<a class="headerlink" href="#django" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="http://www.djangoproject.com">Django</a> is a &#8220;batteries included&#8221; web
+application framework. By providing many utilities and patterns out of the
+box, Django aims to make it possible to build complex, database-backed web
+applications quickly, while encouraging best practices in code written using
+it.</p>
+<p>Django has a large and active community, and many pre-built <a class="reference external" href="http://djangopackages.com/">re-usable
+modules</a> that can be incorporated into a new
+project as-is, or customized to fit your needs.</p>
+<p>There are annual Django conferences <a class="reference external" href="http://djangocon.us">in the United States</a> and <a class="reference external" href="http://djangocon.eu">in Europe</a>.</p>
+</div>
+<div class="section" id="flask">
+<h3>Flask<a class="headerlink" href="#flask" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="http://flask.pocoo.org/">Flask</a> is a &#8220;microframework&#8221; for Python. Rather
+than aiming to provide everything you could possibly need, Flask implements
+the most commonly-used core components of a web application framework, like
+URL routing, request and response objects, and templates. As a user of
+Flask, it is therefore up to you to choose and integrate other components
+you may need, such as database access or form generation and validation. For
+many popular modules, <a class="reference external" href="http://flask.pocoo.org/extensions/">Extensions</a> may
+already exist to suit your needs.</p>
+<p><strong>Support</strong> for flask can best be found in its mailing list. Just shoot an
+email to <a class="reference external" href="mailto:flask&#37;&#52;&#48;librelist&#46;com">flask<span>&#64;</span>librelist<span>&#46;</span>com</a> and reply to the confirmation email.</p>
+</div>
+<div class="section" id="werkzeug">
+<h3>Werkzeug<a class="headerlink" href="#werkzeug" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="http://werkzeug.pocoo.org/">Werkzeug</a> is not actually a real framework, but
+rather a very powerful set of tools for building web applications. It provides
+URL routing utilities, request and response objects and a basic development
+server. It is mostly used where users need bigger flexibility for their
+application that is not commonly found in other web frameworks.</p>
+<p>Support can be found on its <a class="reference external" href="http://werkzeug.pocoo.org/community/#mailinglist">mailing list</a>.</p>
+</div>
+<div class="section" id="tornado">
+<h3>Tornado<a class="headerlink" href="#tornado" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="http://www.tornadoweb.org/">Tornado</a> is a scalable, non-blocking web server and web application framework with
+a relative simple usage. Tornado is known for his high performance.
+It was initially developed for <a class="reference external" href="http://friendfeed.com/">friendfeed</a> , a real time chat and blog system.</p>
+<p>In the Jinja2 template engine example it is used to serve the rendered pages.</p>
+</div>
+<div class="section" id="pyramid">
+<h3>Pyramid<a class="headerlink" href="#pyramid" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="http://www.pylonsproject.org/">Pyramid</a> lies somewhere between a big
+framework like Django and the microframeworks: It comes with a lot of libraries
+and functionality and can thus not be considered lightweight. On the other
+hand, it does not provide all the functionality Django does. Instead Pyramid
+brings basic support for most regular tasks and provides a great deal of
+extensibility. Additionally, Pyramid has a huge focus on complete
+<a class="reference external" href="http://docs.pylonsproject.org/en/latest/docs/pyramid.html">documentation</a>. As
+a little extra it comes with the Werkzeug Debugger which allows you to debug a
+running web application in the browser.</p>
+<p><strong>Support</strong> can also be found in the
+<a class="reference external" href="http://docs.pylonsproject.org/en/latest/index.html#support-desc">documentation</a>.</p>
+</div>
+</div>
+<div class="section" id="web-servers">
+<h2>Web Servers<a class="headerlink" href="#web-servers" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="nginx">
+<span id="nginx-ref"></span><h3>Nginx<a class="headerlink" href="#nginx" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="http://nginx.org/">Nginx</a> (pronounced &#8220;engine-x&#8221;) is a web server and
+reverse-proxy for HTTP, SMTP and other protocols. It is known for its
+high performance, relative simplicity, and compatibility with many
+application servers (like WSGI servers). It also includes handy features
+like load-balancing, basic authentication, streaming, and others. Designed
+to serve high-load websites, Nginx is gradually becoming quite popular.</p>
+</div>
+</div>
+<div class="section" id="wsgi-servers">
+<span id="wsgi-servers-ref"></span><h2>WSGI Servers<a class="headerlink" href="#wsgi-servers" title="Permalink to this headline">¶</a></h2>
+<p>Stand-alone WSGI servers typically use less resources than traditional web
+servers and provide top performance <a class="footnote-reference" href="#id15" id="id7">[3]</a>.</p>
+<div class="section" id="gunicorn">
+<span id="gunicorn-ref"></span><h3>Gunicorn<a class="headerlink" href="#gunicorn" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="http://gunicorn.org/">Gunicorn</a> (Green Unicorn) is a WSGI server used
+to serve Python applications. It is a Python interpretation of the Ruby
+<a class="reference external" href="http://unicorn.bogomips.org/">Unicorn</a> server. Unicorn is designed to be
+lightweight, easy to use, and uses many UNIX idioms. Gunicorn is not designed
+to face the internet &#8211; it was designed to run behind Nginx which buffers
+slow requests and takes care of other important considerations. A sample
+setup for Nginx + Gunicorn can be found in the
+<a class="reference external" href="http://gunicorn.org/index.html#deployment">Gunicorn help</a>.</p>
+</div>
+</div>
+<div class="section" id="server-best-practices">
+<span id="uwsgi-ref"></span><h2>Server Best Practices<a class="headerlink" href="#server-best-practices" title="Permalink to this headline">¶</a></h2>
+<p>The majority of self hosted Python applications today are hosted with a WSGI
+server such as <a class="reference internal" href="#gunicorn-ref"><em>Gunicorn</em></a>, either directly or behind a
+lightweight web server such as <a class="reference internal" href="#nginx-ref"><em>nginx</em></a>.</p>
+<p>The WSGI servers serve the Python applications while the web server handles
+tasks better suited for it such as static file serving, request routing, DDoS
+protection, and basic authentication.</p>
+</div>
+<div class="section" id="hosting">
+<h2>Hosting<a class="headerlink" href="#hosting" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="platform-as-a-service">
+<h3>Platform-as-a-Service<a class="headerlink" href="#platform-as-a-service" title="Permalink to this headline">¶</a></h3>
+<p>Platform-as-a-Service (PaaS) is a type of cloud computing infrastructure
+which abstracts and manages infrastructure, routing, and scaling of web
+applications. When using PaaS, application developers can focus on writing
+application code rather than needing to be concerned with deployment
+details.</p>
+<p>Most PaaS services offer a command-line interface that developers can use to
+set up and interrogate configuration, and to deploy new releases of an
+application to the service.</p>
+<p>PaaS services and their partners offer add-on functionality which is well
+integrated into the platform, such as database hosting, email services,
+logging, scheduled and background tasks, billing and payment, etc.</p>
+<div class="section" id="heroku">
+<h4>Heroku<a class="headerlink" href="#heroku" title="Permalink to this headline">¶</a></h4>
+<p><a class="reference external" href="http://www.heroku.com/">Heroku</a>&#8216;s
+<a class="reference external" href="http://devcenter.heroku.com/articles/cedar">Cedar stack</a> offers first class
+support for Python 2.7 applications.</p>
+<p>Heroku allows you to run as many Python web applications as you like, 24/7 and
+free of charge. Heroku is best described as a horizontal scaling platform. They
+start to charge you once you &#8220;scale&#8221; your application to run on more than one
+Dyno (abstracted servers) at a time.</p>
+<p>Heroku publishes <a class="reference external" href="http://devcenter.heroku.com/articles/python">step-by-step instructions</a> on how to set up your first
+application for use in Heroku, and maintains a list of <a class="reference external" href="http://python.herokuapp.com/">example applications</a>.</p>
+</div>
+<div class="section" id="dotcloud">
+<h4>DotCloud<a class="headerlink" href="#dotcloud" title="Permalink to this headline">¶</a></h4>
+<p><a class="reference external" href="http://www.dotcloud.com/">DotCloud</a> supports WSGI applications and
+background/worker tasks natively on their platform. Web applications run
+Python version 2.6, use <a class="reference internal" href="#nginx-ref"><em>nginx</em></a> and <a class="reference internal" href="#uwsgi-ref"><em>uWSGI</em></a>, and allow custom configuration of both for advanced users.</p>
+<p>DotCloud uses a custom command-line API client which can work with
+applications managed in git repositories or any other version control
+system.</p>
+<p>DotCloud has a free plan with limited database size, and without extra
+services (caching…).</p>
+<p>See the <a class="reference external" href="http://docs.dotcloud.com/services/python/">DotCloud documentation on Python</a> for more information and help
+getting started.</p>
+</div>
+<div class="section" id="gondor">
+<h4>Gondor<a class="headerlink" href="#gondor" title="Permalink to this headline">¶</a></h4>
+<p><a class="reference external" href="https://gondor.io/">Gondor</a> is a PaaS specialized for deploying Django
+and Pinax applications. Gondor supports Django versions 1.2 and 1.3 on
+Python version 2.7, and can automatically configure your Django site if you
+use <tt class="docutils literal"><span class="pre">local_settings.py</span></tt> for site-specific configuration information.</p>
+<p>Gondor has a guide on deploying <a class="reference external" href="https://gondor.io/support/django/setup/">Django projects</a>.</p>
+</div>
+</div>
+</div>
+<div class="section" id="templating">
+<h2>Templating<a class="headerlink" href="#templating" title="Permalink to this headline">¶</a></h2>
+<p>Most WSGI applications are responding to HTTP requests to serve
+content in HTML or other markup languages. Instead of generating directly
+textual content from Python, the concept of separation of concerns
+advises us to use templates. A template engine manages a suite of
+template files, with a system of hierarchy and inclusion to
+avoid unnecessary repetition, and is in charge of rendering
+(generating) the actual content, filling the static content
+of the templates with the dynamic content generated by the
+application.</p>
+<p>As template files are
+sometimes written by designers or front-end developers,
+it can be difficult to handle increasing complexity.</p>
+<p>Some general good practices apply to the part of the
+application passing dynamic content to the template engine,
+and to the templates themselves.</p>
+<ul class="simple">
+<li>Template files should be passed only the dynamic
+content that is needed for rendering the template. Avoid
+to be tempted to pass additional content &#8220;just in case&#8221;:
+it is easier to add some missing variable when needed than to remove
+a likely unused variable later.</li>
+<li>Many template engines allow for complex statements
+or assignments in the template itself, and many
+allow some Python code to be evaluated in the
+templates. This convenience can lead to uncontrolled
+increase in complexity, and often harder to find bugs.</li>
+<li>It is often necessary to mix javascript templates with
+HTML templates. A sane approach to this design is to isolate
+the parts where the HTML template passes some variable content
+to the javascript code.</li>
+</ul>
+<div class="section" id="jinja2">
+<h3>Jinja2<a class="headerlink" href="#jinja2" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="http://jinja.pocoo.org/">Jinja2</a> is a template engine which is similar to the Django template system with some extra features. It is a text-based template
+language and thus can be used to generate any markup. It allows customization of filters, tags, tests and globals.
+Unlike the template system implemented in the Django Framework it allows to call functions. The Code is staying under the BSD license.</p>
+<p>Here some important html tags in Jinja2:</p>
+<div class="highlight-html"><div class="highlight"><pre>{# This is a comment #}
+
+{# The next tag is a variable output: #}
+{{title}}
+
+{# Tag for a block, can be replaced through inheritance with other html code #}
+{% block head %}
+<span class="nt">&lt;h1&gt;</span>This is the head!<span class="nt">&lt;/h1&gt;</span>
+{% endblock %}
+
+{# Output of an array as an iteration #}
+{% for item in list %}
+<span class="nt">&lt;li&gt;</span>{{ item }}<span class="nt">&lt;/li&gt;</span>
+{% endfor %}
+</pre></div>
+</div>
+<p>The next listings is an example of a web site in combination with the tornado web server. Tornado is not very complicate
+to use.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># import Jinja2</span>
+<span class="kn">from</span> <span class="nn">jinja2</span> <span class="kn">import</span> <span class="n">Environment</span><span class="p">,</span> <span class="n">FileSystemLoader</span>
+
+<span class="c"># import Tornado</span>
+<span class="kn">import</span> <span class="nn">tornado.ioloop</span>
+<span class="kn">import</span> <span class="nn">tornado.web</span>
+
+<span class="c"># Load template file templates/site.html</span>
+<span class="n">TEMPLATE_FILE</span> <span class="o">=</span> <span class="s">&quot;site.html&quot;</span>
+<span class="n">templateLoader</span> <span class="o">=</span> <span class="n">FileSystemLoader</span><span class="p">(</span> <span class="n">searchpath</span><span class="o">=</span><span class="s">&quot;templates/&quot;</span> <span class="p">)</span>
+<span class="n">templateEnv</span> <span class="o">=</span> <span class="n">Environment</span><span class="p">(</span> <span class="n">loader</span><span class="o">=</span><span class="n">templateLoader</span> <span class="p">)</span>
+<span class="n">template</span> <span class="o">=</span> <span class="n">templateEnv</span><span class="o">.</span><span class="n">get_template</span><span class="p">(</span><span class="n">TEMPLATE_FILE</span><span class="p">)</span>
+
+<span class="c"># List for famous movie rendering</span>
+<span class="n">movie_list</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span><span class="s">&quot;The Hitchhiker&#39;s Guide to the Galaxy&quot;</span><span class="p">],[</span><span class="mi">2</span><span class="p">,</span><span class="s">&quot;Back to future&quot;</span><span class="p">],[</span><span class="mi">3</span><span class="p">,</span><span class="s">&quot;Matrix&quot;</span><span class="p">]]</span>
+
+<span class="c"># template.render() returns a string which contains the rendered html</span>
+<span class="n">html_output</span> <span class="o">=</span> <span class="n">template</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="nb">list</span><span class="o">=</span><span class="n">movie_list</span><span class="p">,</span>
+                        <span class="n">title</span><span class="o">=</span><span class="s">&quot;Here is my favorite movie list&quot;</span><span class="p">)</span>
+
+<span class="c"># Handler for main page</span>
+<span class="k">class</span> <span class="nc">MainHandler</span><span class="p">(</span><span class="n">tornado</span><span class="o">.</span><span class="n">web</span><span class="o">.</span><span class="n">RequestHandler</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c"># Returns rendered template string to the browser request</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">html_output</span><span class="p">)</span>
+
+<span class="c"># Assign handler to the server root  (127.0.0.1:PORT/)</span>
+<span class="n">application</span> <span class="o">=</span> <span class="n">tornado</span><span class="o">.</span><span class="n">web</span><span class="o">.</span><span class="n">Application</span><span class="p">([</span>
+    <span class="p">(</span><span class="s">r&quot;/&quot;</span><span class="p">,</span> <span class="n">MainHandler</span><span class="p">),</span>
+<span class="p">])</span>
+<span class="n">PORT</span><span class="o">=</span><span class="mi">8884</span>
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="c"># Setup the server</span>
+    <span class="n">application</span><span class="o">.</span><span class="n">listen</span><span class="p">(</span><span class="n">PORT</span><span class="p">)</span>
+    <span class="n">tornado</span><span class="o">.</span><span class="n">ioloop</span><span class="o">.</span><span class="n">IOLoop</span><span class="o">.</span><span class="n">instance</span><span class="p">()</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>The <cite>base.html</cite> file can be used as base for all site pages which are for example implemented in the content block.</p>
+<div class="highlight-html"><div class="highlight"><pre><span class="cp">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01//EN&quot;&gt;</span>
+<span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">&quot;en&quot;</span><span class="nt">&gt;</span>
+<span class="nt">&lt;html</span> <span class="na">xmlns=</span><span class="s">&quot;http://www.w3.org/1999/xhtml&quot;</span><span class="nt">&gt;</span>
+<span class="nt">&lt;head&gt;</span>
+    <span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">href=</span><span class="s">&quot;style.css&quot;</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;title&gt;</span>{{title}} - My Webpage<span class="nt">&lt;/title&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+<span class="nt">&lt;body&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;content&quot;</span><span class="nt">&gt;</span>
+    {# In the next line the content from the site.html template will be added #}
+    {% block content %}{% endblock %}
+<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;footer&quot;</span><span class="nt">&gt;</span>
+    {% block footer %}
+    <span class="ni">&amp;copy;</span> Copyright 2013 by <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;http://domain.invalid/&quot;</span><span class="nt">&gt;</span>you<span class="nt">&lt;/a&gt;</span>.
+    {% endblock %}
+<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+</pre></div>
+</div>
+<p>The next listing is our site page (<cite>site.html</cite>) loaded in the python app which extends <cite>base.html</cite>. The content block is
+automatically set into the corresponding block in the base.html page.</p>
+<div class="highlight-html"><div class="highlight"><pre><span class="cp">&lt;!{% extends &quot;base.html&quot; %}</span>
+<span class="cp">{% block content %}</span>
+<span class="cp">    &lt;p class=&quot;important&quot;&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;content&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;h2&gt;</span>{{title}}<span class="nt">&lt;/h2&gt;</span>
+        <span class="nt">&lt;p&gt;</span>{{ list_title }}<span class="nt">&lt;/p&gt;</span>
+        <span class="nt">&lt;ul&gt;</span>
+             {% for item in list %}
+             <span class="nt">&lt;li&gt;</span>{{ item[0]}} :  {{ item[1]}}<span class="nt">&lt;/li&gt;</span>
+             {% endfor %}
+        <span class="nt">&lt;/ul&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;/p&gt;</span>
+{% endblock %}
+</pre></div>
+</div>
+<p class="rubric">References</p>
+<table class="docutils footnote" frame="void" id="id13" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[1]</td><td><a class="reference external" href="http://blog.dscpl.com.au/2010/06/modpython-project-is-now-officially.html">The mod_python project is now officially dead</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id14" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[2]</td><td><a class="reference external" href="http://www.modpython.org/pipermail/mod_python/2007-July/024080.html">mod_wsgi vs mod_python</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id15" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id7">[3]</a></td><td><a class="reference external" href="http://nichol.as/benchmark-of-python-web-servers">Benchmark of Python WSGI Servers</a></td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper"><h1><a href="http://python-guide.org">Python指南.</a></h1>
+<p>
+  这份“傻逼”的指南旨在给Python的新老手们提供一个不错的参考书来安装、配置和使用Python
+</p>
+
+<h3>获取更新</h3>
+<p>收取更新消息</p>
+
+<p><a href="http://tinyletter.com/kennethreitz">订阅新闻邮件</a></p>
+
+<h3>捐助</h3>
+<p>
+    如果你喜欢这个指南，给作者捐点Money吧<a href="https://www.gittip.com/kennethreitz/">on Gittip</a>:
+</p>
+<p>
+  <iframe style="border: 0; margin: 0; padding: 0;"
+      src="https://www.gittip.com/kennethreitz/widget.html"
+      width="48pt" height="20pt"></iframe>
+</p>
+  <h3><a href="../../">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Web Applications</a><ul>
+<li><a class="reference internal" href="#context">Context</a><ul>
+<li><a class="reference internal" href="#wsgi">WSGI</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#frameworks">Frameworks</a><ul>
+<li><a class="reference internal" href="#django">Django</a></li>
+<li><a class="reference internal" href="#flask">Flask</a></li>
+<li><a class="reference internal" href="#werkzeug">Werkzeug</a></li>
+<li><a class="reference internal" href="#tornado">Tornado</a></li>
+<li><a class="reference internal" href="#pyramid">Pyramid</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#web-servers">Web Servers</a><ul>
+<li><a class="reference internal" href="#nginx">Nginx</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#wsgi-servers">WSGI Servers</a><ul>
+<li><a class="reference internal" href="#gunicorn">Gunicorn</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#server-best-practices">Server Best Practices</a></li>
+<li><a class="reference internal" href="#hosting">Hosting</a><ul>
+<li><a class="reference internal" href="#platform-as-a-service">Platform-as-a-Service</a><ul>
+<li><a class="reference internal" href="#heroku">Heroku</a></li>
+<li><a class="reference internal" href="#dotcloud">DotCloud</a></li>
+<li><a class="reference internal" href="#gondor">Gondor</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#templating">Templating</a><ul>
+<li><a class="reference internal" href="#jinja2">Jinja2</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../">Documentation overview</a><ul>
+      <li>Previous: <a href="../client/" title="previous chapter">Network Applications</a></li>
+      <li>Next: <a href="../scrape/" title="next chapter">HTML Scraping</a></li>
+  </ul></li>
+</ul>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../../_sources/scenarios/web.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search/" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy; Copyright 2013. A <a href="http://kennethreitz.com/pages/open-projects.html">Kenneth Reitz</a> Project. <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/"> Creative Commons Share-Alike 3.0</a>.
+    </div>
+    <a href="https://github.com/kennethreitz/python-guide" class="github">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" />
+    </a>
+
+    <script type="text/javascript">
+
+      var _gaq2 = _gaq2 || [];
+      _gaq2.push(['_setAccount', 'UA-8742933-10']);
+      _gaq2.push(['_setDomainName', 'none']);
+      _gaq2.push(['_setAllowLinker', true]);
+      _gaq2.push(['_trackPageview']);
+
+      (function() {
+        var ga2 = document.createElement('script'); ga2.type = 'text/javascript'; ga2.async = true;
+        ga2.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga2, s);
+      })();
+
+    </script>
+
+    <script type="text/javascript">
+      (function() {
+        var t   = document.createElement('script');
+        t.type  = 'text/javascript';
+        t.async = true;
+        t.id    = 'gauges-tracker';
+        t.setAttribute('data-site-id',
+                       '4ddc1cfaf5a1f50fcc000001');
+        t.src = '//secure.gaug.es/track.js';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(t, s);
+      })();
+    </script>
+  </body>
+</html>

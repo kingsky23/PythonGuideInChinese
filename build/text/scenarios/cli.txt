@@ -1,0 +1,19 @@
+
+Command Line Applications
+*************************
+
+Todo: Explain "Command Line Applications"
+
+
+Clint
+=====
+
+Todo: Write about Clint
+
+
+docopt
+======
+
+docopt is a lightweight, highly Pythonic package that allows creating
+command line interfaces easily and intuitively, by parsing POSIX-style
+usage instructions.

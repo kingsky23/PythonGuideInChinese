@@ -1,0 +1,213 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>XML parsing &mdash; The Hitchhiker&#39;s Guide to Python</title>
+    
+    <link rel="stylesheet" href="../_static/flasky.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="The Hitchhiker&#39;s Guide to Python" href="../index.html" />
+    <link rel="next" title="Packaging Your Code" href="../shipping/packaging.html" />
+    <link rel="prev" title="Image Manipulation" href="imaging.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../shipping/packaging.html" title="Packaging Your Code"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="imaging.html" title="Image Manipulation"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">The Hitchhiker&#39;s Guide to Python</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="xml-parsing">
+<h1>XML parsing<a class="headerlink" href="#xml-parsing" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="untangle">
+<h2>untangle<a class="headerlink" href="#untangle" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="http://0chris.com/untangle">untangle</a> is a simple library which takes
+an XML document and returns a Python object which mirrors the nodes and
+attributes in its structure.</p>
+<p>For example, an xml file like this:</p>
+<div class="highlight-xml"><div class="highlight"><pre><span class="cp">&lt;?xml version=&quot;1.0&quot;?&gt;</span>
+<span class="nt">&lt;root&gt;</span>
+    <span class="nt">&lt;child</span> <span class="na">name=</span><span class="s">&quot;child1&quot;</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/root&gt;</span>
+</pre></div>
+</div>
+<p>can be loaded like this:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">untangle</span>
+<span class="n">obj</span> <span class="o">=</span> <span class="n">untangle</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="s">&#39;path/to/file.xml&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>and then you can get the child elements name like this:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">obj</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">child</span><span class="p">[</span><span class="s">&#39;name&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>untangle also supports loading XML from a string or an URL.</p>
+</div>
+<div class="section" id="xmltodict">
+<h2>xmltodict<a class="headerlink" href="#xmltodict" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="http://github.com/martinblech/xmltodict">xmltodict</a> is another simple
+library that aims at making xml feel like working with json.</p>
+<p>An xml file like this:</p>
+<div class="highlight-xml"><div class="highlight"><pre><span class="nt">&lt;mydocument</span> <span class="na">has=</span><span class="s">&quot;an attribute&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;and&gt;</span>
+    <span class="nt">&lt;many&gt;</span>elements<span class="nt">&lt;/many&gt;</span>
+    <span class="nt">&lt;many&gt;</span>more elements<span class="nt">&lt;/many&gt;</span>
+  <span class="nt">&lt;/and&gt;</span>
+  <span class="nt">&lt;plus</span> <span class="na">a=</span><span class="s">&quot;complex&quot;</span><span class="nt">&gt;</span>
+    element as well
+  <span class="nt">&lt;/plus&gt;</span>
+<span class="nt">&lt;/mydocument&gt;</span>
+</pre></div>
+</div>
+<p>can be loaded into a python dict like this:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">xmltodict</span>
+<span class="n">obj</span> <span class="o">=</span> <span class="n">xmltodict</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="s">&#39;path/to/file.xml&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>and then you can access elements, attributes and values like this:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">doc</span><span class="p">[</span><span class="s">&#39;mydocument&#39;</span><span class="p">][</span><span class="s">&#39;@has&#39;</span><span class="p">]</span> <span class="c"># == u&#39;an attribute&#39;</span>
+<span class="n">doc</span><span class="p">[</span><span class="s">&#39;mydocument&#39;</span><span class="p">][</span><span class="s">&#39;and&#39;</span><span class="p">][</span><span class="s">&#39;many&#39;</span><span class="p">]</span> <span class="c"># == [u&#39;elements&#39;, u&#39;more elements&#39;]</span>
+<span class="n">doc</span><span class="p">[</span><span class="s">&#39;mydocument&#39;</span><span class="p">][</span><span class="s">&#39;plus&#39;</span><span class="p">][</span><span class="s">&#39;@a&#39;</span><span class="p">]</span> <span class="c"># == u&#39;complex&#39;</span>
+<span class="n">doc</span><span class="p">[</span><span class="s">&#39;mydocument&#39;</span><span class="p">][</span><span class="s">&#39;plus&#39;</span><span class="p">][</span><span class="s">&#39;#text&#39;</span><span class="p">]</span> <span class="c"># == u&#39;element as well&#39;</span>
+</pre></div>
+</div>
+<p>xmltodict also lets you roundtrip back to xml with the unparse function,
+has a streaming mode suitable for handling files that don&#8217;t fit in memory
+and supports namespaces.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper"><h1><a href="http://python-guide.org">Python指南.</a></h1>
+<p>
+  这份“傻逼”的指南旨在给Python的新老手们提供一个不错的参考书来安装、配置和使用Python
+</p>
+
+<h3>获取更新</h3>
+<p>收取更新消息</p>
+
+<p><a href="http://tinyletter.com/kennethreitz">订阅新闻邮件</a></p>
+
+<h3>捐助</h3>
+<p>
+    如果你喜欢这个指南，给作者捐点Money吧<a href="https://www.gittip.com/kennethreitz/">on Gittip</a>:
+</p>
+<p>
+  <iframe style="border: 0; margin: 0; padding: 0;"
+      src="https://www.gittip.com/kennethreitz/widget.html"
+      width="48pt" height="20pt"></iframe>
+</p>
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">XML parsing</a><ul>
+<li><a class="reference internal" href="#untangle">untangle</a></li>
+<li><a class="reference internal" href="#xmltodict">xmltodict</a></li>
+</ul>
+</li>
+</ul>
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="imaging.html" title="previous chapter">Image Manipulation</a></li>
+      <li>Next: <a href="../shipping/packaging.html" title="next chapter">Packaging Your Code</a></li>
+  </ul></li>
+</ul>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/scenarios/xml.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy; Copyright 2013. A <a href="http://kennethreitz.com/pages/open-projects.html">Kenneth Reitz</a> Project. <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/"> Creative Commons Share-Alike 3.0</a>.
+    </div>
+    <a href="https://github.com/kennethreitz/python-guide" class="github">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" />
+    </a>
+
+    <script type="text/javascript">
+
+      var _gaq2 = _gaq2 || [];
+      _gaq2.push(['_setAccount', 'UA-8742933-10']);
+      _gaq2.push(['_setDomainName', 'none']);
+      _gaq2.push(['_setAllowLinker', true]);
+      _gaq2.push(['_trackPageview']);
+
+      (function() {
+        var ga2 = document.createElement('script'); ga2.type = 'text/javascript'; ga2.async = true;
+        ga2.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga2, s);
+      })();
+
+    </script>
+
+    <script type="text/javascript">
+      (function() {
+        var t   = document.createElement('script');
+        t.type  = 'text/javascript';
+        t.async = true;
+        t.id    = 'gauges-tracker';
+        t.setAttribute('data-site-id',
+                       '4ddc1cfaf5a1f50fcc000001');
+        t.src = '//secure.gaug.es/track.js';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(t, s);
+      })();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,431 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>昌旭翻译的Hitchhiker的Python指南 &mdash; The Hitchhiker&#39;s Guide to Python</title>
+    
+    <link rel="stylesheet" href="_static/flasky.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="The Hitchhiker&#39;s Guide to Python" href="#" />
+    <link rel="next" title="选择一个解析器" href="starting/which-python/" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex/" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="starting/which-python/" title="选择一个解析器"
+             accesskey="N">next</a> |</li>
+        <li><a href="#">The Hitchhiker&#39;s Guide to Python</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="hitchhikerpython">
+<h1>昌旭翻译的Hitchhiker的Python指南<a class="headerlink" href="#hitchhikerpython" title="Permalink to this headline">¶</a></h1>
+<p>欢迎阅读《Hitchhiker的Python指南》</p>
+<p><strong>当前这份文档的开发工作很重</strong>，如果你乐意帮忙，<a class="reference external" href="https://github.com/kennethreitz/python-guide">请在GitHub上fork我们</a></p>
+<p>这份“傻逼”的指南旨在给Python的新老手们提供一个不错的参考书来安装、
+配置和使用Python</p>
+<div class="section" id="id1">
+<h2>入门<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>这部分指南旨在教你如何搭建你自己的Python开发环境</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="starting/which-python/">选择一个解析器</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="starting/which-python/#python-2">当前 (Python 2)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="starting/which-python/#python-3">未来 (Python 3)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="starting/which-python/#id3">实现</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<ul class="simple">
+<li>正确安装Python</li>
+</ul>
+<blockquote>
+<div><div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="starting/install/osx/">Installing Python on Mac OS X</a></li>
+<li class="toctree-l1"><a class="reference internal" href="starting/install/win/">Installing Python on Windows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="starting/install/linux/">在Linux上安装Python</a></li>
+</ul>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="id2">
+<h2>编写牛逼的代码<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>这部分指南提供了一些编写Python时的好的经验与技巧</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="writing/structure/">Structuring Your Project</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="writing/structure/#structure-is-key">Structure is Key</a></li>
+<li class="toctree-l2"><a class="reference internal" href="writing/structure/#modules">Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="writing/structure/#packages">Packages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="writing/structure/#object-oriented-programming">Object-oriented programming</a></li>
+<li class="toctree-l2"><a class="reference internal" href="writing/structure/#decorators">Decorators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="writing/structure/#dynamic-typing">Dynamic typing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="writing/structure/#mutable-and-immutable-types">Mutable and immutable types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="writing/structure/#vendorizing-dependencies">Vendorizing Dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="writing/structure/#runners">Runners</a></li>
+<li class="toctree-l2"><a class="reference internal" href="writing/structure/#further-reading">Further Reading</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="writing/style/">Code Style</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="writing/style/#general-concepts">General concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="writing/style/#idioms">Idioms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="writing/style/#zen-of-python">Zen of Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="writing/style/#pep-8">PEP 8</a></li>
+<li class="toctree-l2"><a class="reference internal" href="writing/style/#conventions">Conventions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="writing/reading/">Reading Great Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="writing/documentation/">Documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="writing/documentation/#project-documentation">Project Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="writing/documentation/#project-publication">Project Publication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="writing/documentation/#code-documentation-advice">Code Documentation Advice</a></li>
+<li class="toctree-l2"><a class="reference internal" href="writing/documentation/#other-tools">Other Tools</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="writing/tests/">Testing Your Code</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="writing/tests/#the-basics">The Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="writing/tests/#tools">Tools</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="writing/gotchas/">Common Gotchas</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="writing/gotchas/#mutable-default-arguments">Mutable Default Arguments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="writing/gotchas/#late-binding-closures">Late Binding Closures</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="writing/license/">Choosing a License</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="scenario-guide">
+<h2>Scenario Guide( 不知道怎么翻译准确 )<a class="headerlink" href="#scenario-guide" title="Permalink to this headline">¶</a></h2>
+<p>这部分指南描述了不同情况下使用Python模块和工具的建议</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="scenarios/client/">Network Applications</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="scenarios/client/#http">HTTP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scenarios/client/#distributed-systems">Distributed Systems</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="scenarios/web/">Web Applications</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="scenarios/web/#context">Context</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scenarios/web/#frameworks">Frameworks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scenarios/web/#web-servers">Web Servers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scenarios/web/#wsgi-servers">WSGI Servers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scenarios/web/#server-best-practices">Server Best Practices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scenarios/web/#hosting">Hosting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scenarios/web/#templating">Templating</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="scenarios/scrape/">HTML Scraping</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="scenarios/scrape/#web-scraping">Web Scraping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scenarios/scrape/#lxml-and-requests">lxml and Requests</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="scenarios/cli/">Command Line Applications</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="scenarios/cli/#clint">Clint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scenarios/cli/#docopt">docopt</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="scenarios/gui/">GUI Applications</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="scenarios/gui/#qt">Qt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scenarios/gui/#cocoa">Cocoa</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scenarios/gui/#wxpython">wxPython</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scenarios/gui/#gtk">GTk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scenarios/gui/#tk">Tk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scenarios/gui/#kivy">Kivy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scenarios/gui/#pyjamasdesktop-pyjs-desktop">PyjamasDesktop (pyjs Desktop)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scenarios/gui/#camelot">Camelot</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="scenarios/db/">Databases</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="scenarios/db/#db-api">DB-API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scenarios/db/#sqlalchemy">SQLAlchemy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scenarios/db/#django-orm">Django ORM</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="scenarios/network/">Networking</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="scenarios/network/#twisted">Twisted</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scenarios/network/#pyzmq">PyZMQ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scenarios/network/#gevent">gevent</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="scenarios/admin/">Systems Administration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="scenarios/admin/#fabric">Fabric</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scenarios/admin/#salt">Salt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scenarios/admin/#psutil">Psutil</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scenarios/admin/#chef">Chef</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scenarios/admin/#puppet">Puppet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scenarios/admin/#blueprint">Blueprint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scenarios/admin/#buildout">Buildout</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="scenarios/ci/">Continuous Integration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="scenarios/ci/#why">Why?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scenarios/ci/#jenkins">Jenkins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scenarios/ci/#buildbot">Buildbot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scenarios/ci/#mule">Mule?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scenarios/ci/#tox">Tox</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scenarios/ci/#travis-ci">Travis-CI</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="scenarios/speed/">Speed</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="scenarios/speed/#context">Context</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scenarios/speed/#id2">C Extensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scenarios/speed/#threading">Threading</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="scenarios/scientific/">Scientific Applications</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="scenarios/scientific/#context">Context</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scenarios/scientific/#tools">Tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scenarios/scientific/#libraries">Libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scenarios/scientific/#resources">Resources</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="scenarios/imaging/">Image Manipulation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="scenarios/imaging/#python-imaging-library">Python Imaging Library</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="scenarios/xml/">XML parsing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="scenarios/xml/#untangle">untangle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scenarios/xml/#xmltodict">xmltodict</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="shipping-great-code">
+<h2>Shipping Great Code( 维护代码？部署代码？不会翻译了 )<a class="headerlink" href="#shipping-great-code" title="Permalink to this headline">¶</a></h2>
+<p>这部分指南将教你如何部署自己的Python代码</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="shipping/packaging/">Packaging Your Code</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="shipping/packaging/#for-python-developers">For Python Developers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="shipping/packaging/#for-linux-distributions">For Linux Distributions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="shipping/freezing/">Freezing Your Code</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="shipping/freezing/#comparison">Comparison</a></li>
+<li class="toctree-l2"><a class="reference internal" href="shipping/freezing/#windows">Windows</a></li>
+<li class="toctree-l2"><a class="reference internal" href="shipping/freezing/#osx">OSX</a></li>
+<li class="toctree-l2"><a class="reference internal" href="shipping/freezing/#linux">Linux</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="id3">
+<h2>开发环境<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="dev/env/">Your Development Environment</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dev/env/#text-editors">Text Editors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dev/env/#ides">IDEs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dev/env/#interpreter-tools">Interpreter Tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dev/env/#other-tools">Other Tools</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="dev/virtualenvs/">Virtual Environments</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dev/virtualenvs/#virtualenv">virtualenv</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dev/virtualenvs/#virtualenvwrapper">virtualenvwrapper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dev/virtualenvs/#autoenv">autoenv</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="id4">
+<h2>备注<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<p>这部分指南是最枯燥的部分，包含一些Python的背景知识</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="intro/duction/">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="intro/duction/#about-this-guide">About This Guide</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="intro/community/">The Community</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="intro/community/#bdfl">BDFL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro/community/#python-software-foundation">Python Software Foundation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro/community/#peps">PEPs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro/community/#python-conferences">Python Conferences</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro/community/#python-user-groups">Python User Groups</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="intro/learning/">Learning Python</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="intro/learning/#beginner">Beginner</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro/learning/#advanced">Advanced</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro/learning/#for-engineers-and-scientists">For Engineers and Scientists</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro/learning/#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="intro/documentation/">Documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="intro/documentation/#official-documentation">Official Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro/documentation/#read-the-docs">Read the Docs</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="intro/news/">News</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="intro/news/#planet-python">Planet Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro/news/#r-python">/r/python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro/news/#pycoder-s-weekly">Pycoder&#8217;s Weekly</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro/news/#python-weekly">Python Weekly</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro/news/#python-news">Python News</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<hr class="docutils" />
+<p>Contribution notes and legal information are here (for those interested).( 这句不会翻译 )</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="notes/contribute/">Contribute</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="notes/contribute/#style-guide">Style Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notes/contribute/#todo-list">Todo List</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="notes/license/">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notes/styleguide/">The Guide Style Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="notes/styleguide/#relevancy">Relevancy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notes/styleguide/#headings">Headings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notes/styleguide/#prose">Prose</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notes/styleguide/#code-examples">Code Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notes/styleguide/#externally-linking">Externally Linking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notes/styleguide/#linking-to-sections-in-the-guide">Linking to Sections in The Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notes/styleguide/#notes-and-warnings">Notes and Warnings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notes/styleguide/#todos">TODOs</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper"><h1>Python指南.</h1>
+<p>
+  这份“傻逼”的指南旨在给Python的新老手们提供一个不错的参考书来安装、配置和使用Python
+</p>
+
+<h3>获取更新</h3>
+<p>收取更新消息</p>
+
+<p><a href="http://tinyletter.com/kennethreitz">订阅新闻邮件</a></p>
+
+<h3>Donate 捐助</h3>
+<p>
+    如果你喜欢这个指南，给作者捐点Money吧<a href="https://www.gittip.com/kennethreitz/"></a>:
+</p>
+<p>
+  <iframe style="border: 0; margin: 0; padding: 0;"
+      src="https://www.gittip.com/kennethreitz/widget.html"
+      width="48pt" height="20pt"></iframe>
+</p>
+
+<h3>反馈</h3>
+<p>
+  如果你有问题、建议、意见等， <a href="mailto:me@kennethreitz.com">
+  给我发个邮件吧</a>， 万分感谢.
+</p>
+
+
+<h3>有用的链接</h3>
+<ul>
+  <li><a href="http://python-guide.org/">官网网站</a></li>
+  <li><a href="http://github.com/kennethreitz/python-guide">GitHub上的项目</a></li>
+  <li><a href="http://github.com/kennethreitz/python-guide/issues">Issue Tracker</a></li>
+</ul>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/index.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search/" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy; Copyright 2013. A <a href="http://kennethreitz.com/pages/open-projects.html">Kenneth Reitz</a> Project. <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/"> Creative Commons Share-Alike 3.0</a>.
+    </div>
+    <a href="https://github.com/kennethreitz/python-guide" class="github">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" />
+    </a>
+
+    <script type="text/javascript">
+
+      var _gaq2 = _gaq2 || [];
+      _gaq2.push(['_setAccount', 'UA-8742933-10']);
+      _gaq2.push(['_setDomainName', 'none']);
+      _gaq2.push(['_setAllowLinker', true]);
+      _gaq2.push(['_trackPageview']);
+
+      (function() {
+        var ga2 = document.createElement('script'); ga2.type = 'text/javascript'; ga2.async = true;
+        ga2.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga2, s);
+      })();
+
+    </script>
+
+    <script type="text/javascript">
+      (function() {
+        var t   = document.createElement('script');
+        t.type  = 'text/javascript';
+        t.async = true;
+        t.id    = 'gauges-tracker';
+        t.setAttribute('data-site-id',
+                       '4ddc1cfaf5a1f50fcc000001');
+        t.src = '//secure.gaug.es/track.js';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(t, s);
+      })();
+    </script>
+  </body>
+</html>

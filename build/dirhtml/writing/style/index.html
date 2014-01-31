@@ -1,0 +1,689 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Code Style &mdash; The Hitchhiker&#39;s Guide to Python</title>
+    
+    <link rel="stylesheet" href="../../_static/flasky.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="The Hitchhiker&#39;s Guide to Python" href="../../" />
+    <link rel="next" title="Reading Great Code" href="../reading/" />
+    <link rel="prev" title="Structuring Your Project" href="../structure/" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex/" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../reading/" title="Reading Great Code"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../structure/" title="Structuring Your Project"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../../">The Hitchhiker&#39;s Guide to Python</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="code-style">
+<span id="id1"></span><h1>Code Style<a class="headerlink" href="#code-style" title="Permalink to this headline">¶</a></h1>
+<p>If you ask Python programmers what they like most in Python, they will
+often say its high readability.  Indeed, a high level of readability
+is at the heart of the design of the Python language, following the
+recognised fact that code is read much more often than it is written.</p>
+<p>One reason for Python code to be easily read and understood is its relatively
+complete set of Code Style guidelines and &#8220;Pythonic&#8221; idioms.</p>
+<p>Moreover, when a veteran Python developer (a Pythonista) points to portions of code
+and says they are not &#8220;Pythonic&#8221;, it usually means that these lines
+of code do not follow the common guidelines and fail to express the intent in
+what is considered the best (hear: most readable) way.</p>
+<p>On some border cases, no best way has been agreed upon on how to express
+an intent in Python code, but these cases are rare.</p>
+<div class="section" id="general-concepts">
+<h2>General concepts<a class="headerlink" href="#general-concepts" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="explicit-code">
+<h3>Explicit code<a class="headerlink" href="#explicit-code" title="Permalink to this headline">¶</a></h3>
+<p>While any kind of black magic is possible with Python, the
+most explicit and straightforward manner is preferred.</p>
+<p><strong>Bad</strong></p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">make_complex</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
+    <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">args</span>
+    <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="o">**</span><span class="nb">locals</span><span class="p">())</span>
+</pre></div>
+</div>
+<p><strong>Good</strong></p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">make_complex</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s">&#39;x&#39;</span><span class="p">:</span> <span class="n">x</span><span class="p">,</span> <span class="s">&#39;y&#39;</span><span class="p">:</span> <span class="n">y</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>In the good code above, x and y are explicitly received from
+the caller, and an explicit dictionary is returned. The developer
+using this function knows exactly what to do by reading the
+first and last lines, which is not the case with the bad example.</p>
+</div>
+<div class="section" id="one-statement-per-line">
+<h3>One statement per line<a class="headerlink" href="#one-statement-per-line" title="Permalink to this headline">¶</a></h3>
+<p>While some compound statements such as list comprehensions are
+allowed and appreciated for their brevity and their expressiveness,
+it is bad practice to have two disjoint statements on the same line of code.</p>
+<p><strong>Bad</strong></p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">print</span> <span class="s">&#39;one&#39;</span><span class="p">;</span> <span class="k">print</span> <span class="s">&#39;two&#39;</span>
+
+<span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span> <span class="k">print</span> <span class="s">&#39;one&#39;</span>
+
+<span class="k">if</span> <span class="o">&lt;</span><span class="nb">complex</span> <span class="n">comparison</span><span class="o">&gt;</span> <span class="ow">and</span> <span class="o">&lt;</span><span class="n">other</span> <span class="nb">complex</span> <span class="n">comparison</span><span class="o">&gt;</span><span class="p">:</span>
+    <span class="c"># do something</span>
+</pre></div>
+</div>
+<p><strong>Good</strong></p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">print</span> <span class="s">&#39;one&#39;</span>
+<span class="k">print</span> <span class="s">&#39;two&#39;</span>
+
+<span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+    <span class="k">print</span> <span class="s">&#39;one&#39;</span>
+
+<span class="n">cond1</span> <span class="o">=</span> <span class="o">&lt;</span><span class="nb">complex</span> <span class="n">comparison</span><span class="o">&gt;</span>
+<span class="n">cond2</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">other</span> <span class="nb">complex</span> <span class="n">comparison</span><span class="o">&gt;</span>
+<span class="k">if</span> <span class="n">cond1</span> <span class="ow">and</span> <span class="n">cond2</span><span class="p">:</span>
+    <span class="c"># do something</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="function-arguments">
+<h3>Function arguments<a class="headerlink" href="#function-arguments" title="Permalink to this headline">¶</a></h3>
+<p>Arguments can be passed to functions in four different ways.</p>
+<p>1. <strong>Positional arguments</strong> are mandatory and have no default values. They are the
+simplest form of arguments and they can be used for the few function arguments
+that are fully part of the functions meaning and their order is natural. For
+instance, in <tt class="docutils literal"><span class="pre">send(message,</span> <span class="pre">recipient)</span></tt> or <tt class="docutils literal"><span class="pre">point(x,</span> <span class="pre">y)</span></tt> the user of the
+function has no difficulty remembering that those two functions require two
+arguments, and in which order.</p>
+<p>In those two cases, it is possible to use argument names when calling the functions
+and, doing so, it is possible to switch the order of arguments, calling for instance
+<tt class="docutils literal"><span class="pre">send(recipient='World',</span> <span class="pre">message='Hello')</span></tt> and <tt class="docutils literal"><span class="pre">point(y=2,</span> <span class="pre">x=1)</span></tt> but this
+reduces readability and is unnecessarily verbose, compared to the more straightforward
+calls to <tt class="docutils literal"><span class="pre">send('Hello',</span> <span class="pre">'World')</span></tt> and <tt class="docutils literal"><span class="pre">point(1,</span> <span class="pre">2)</span></tt>.</p>
+<p>2. <strong>Keyword arguments</strong> are not mandatory and have default values. They are often
+used for optional parameters sent to the function. When a function has more than
+two or three positional parameters, its signature will be more difficult to remember
+and using keyword argument with default values is helpful. For instance, a more
+complete <tt class="docutils literal"><span class="pre">send</span></tt> function could be defined as <tt class="docutils literal"><span class="pre">send(message,</span> <span class="pre">to,</span> <span class="pre">cc=None,</span> <span class="pre">bcc=None)</span></tt>.
+Here <tt class="docutils literal"><span class="pre">cc</span></tt> and <tt class="docutils literal"><span class="pre">bcc</span></tt> are optional, and evaluate to <tt class="docutils literal"><span class="pre">None</span></tt> when they are not
+passed another value.</p>
+<p>Calling a function with keyword arguments can be done in multiple ways in Python,
+for example it is possible to follow the order of arguments in the definition without
+explicitly naming the arguments, like in <tt class="docutils literal"><span class="pre">send('Hello',</span> <span class="pre">'World',</span> <span class="pre">'Cthulhu',</span> <span class="pre">'God')</span></tt>,
+sending a blind carbon copy to God. It would also be possible to name arguments in
+another order, like in <tt class="docutils literal"><span class="pre">send('Hello</span> <span class="pre">again',</span> <span class="pre">'World',</span> <span class="pre">bcc='God',</span> <span class="pre">cc='Cthulhu')</span></tt>.
+Those two possibilities are better avoided without any strong reason to not
+follow the syntax that is the closest to the function definition: <tt class="docutils literal"><span class="pre">send('Hello',</span>
+<span class="pre">'World',</span> <span class="pre">cc='Cthulhu',</span> <span class="pre">bcc='God')</span></tt>.</p>
+<p>As a side note, following <a class="reference external" href="http://en.wikipedia.org/wiki/You_ain't_gonna_need_it">YAGNI</a>
+principle, it is often harder to remove an optional argument (and its logic inside the
+function) that was added &#8220;just in case&#8221; and is seemingly never used, than to add a
+new optional argument and its logic when needed.</p>
+<p>3. The <strong>arbitrary argument list</strong> is the third way to pass arguments to a
+function.  If the function intention is better expressed by a signature with an
+extensible number of positional arguments, it can be defined with the <tt class="docutils literal"><span class="pre">*args</span></tt>
+constructs.  In the function body, <tt class="docutils literal"><span class="pre">args</span></tt> will be a tuple of all the
+remaining positional arguments. For example, <tt class="docutils literal"><span class="pre">send(message,</span> <span class="pre">*args)</span></tt> can be
+called with each recipient as an argument: <tt class="docutils literal"><span class="pre">send('Hello',</span> <span class="pre">'God',</span> <span class="pre">'Mom',</span>
+<span class="pre">'Cthulhu')</span></tt>, and in the function body <tt class="docutils literal"><span class="pre">args</span></tt> will be equal to <tt class="docutils literal"><span class="pre">('God',</span>
+<span class="pre">'Mom',</span> <span class="pre">'Cthulhu')</span></tt>.</p>
+<p>However, this construct has some drawbacks and should be used with caution. If a
+function receives a list of arguments of the same nature, it is often more
+clear to define it as a function of one argument, that argument being a list or
+any sequence. Here, if <tt class="docutils literal"><span class="pre">send</span></tt> has multiple recipients, it is better to define
+it explicitly: <tt class="docutils literal"><span class="pre">send(message,</span> <span class="pre">recipients)</span></tt> and call it with <tt class="docutils literal"><span class="pre">send('Hello',</span>
+<span class="pre">['God',</span> <span class="pre">'Mom',</span> <span class="pre">'Cthulhu'])</span></tt>. This way, the user of the function can manipulate
+the recipient list as a list beforehand, and it opens the possibility to pass
+any sequence, including iterators, that cannot be unpacked as other sequences.</p>
+<p>4. The <strong>arbitrary keyword argument dictionary</strong> is the last way to pass arguments
+to functions. If the function requires an undetermined series of named
+arguments, it is possible to use the <tt class="docutils literal"><span class="pre">**kwargs</span></tt> construct. In the function
+body, <tt class="docutils literal"><span class="pre">kwargs</span></tt> will be a dictionary of all the passed named arguments that
+have not been caught by other keyword arguments in the function signature.</p>
+<p>The same caution as in the case of <em>arbitrary argument list</em> is necessary, for
+similar reasons: these powerful techniques are to be used when there is a
+proven necessity to use them, and they should not be used if the simpler and
+clearer construct is sufficient to express the function&#8217;s intention.</p>
+<p>It is up to the programmer writing the function to determine which arguments
+are positional arguments and which are optional keyword arguments, and to
+decide whether to use the advanced techniques of arbitrary argument passing. If
+the advice above is followed wisely, it is possible and enjoyable to write
+Python functions that are:</p>
+<ul class="simple">
+<li>easy to read (the name and arguments need no explanations)</li>
+<li>easy to change (adding a new keyword argument does not break other parts of the
+code)</li>
+</ul>
+</div>
+<div class="section" id="avoid-the-magical-wand">
+<h3>Avoid the magical wand<a class="headerlink" href="#avoid-the-magical-wand" title="Permalink to this headline">¶</a></h3>
+<p>A powerful tool for hackers, Python comes with a very rich set of hooks and
+tools allowing to do almost any kind of tricky tricks. For instance, it is
+possible to do each of the following:</p>
+<ul class="simple">
+<li>change how objects are created and instantiated</li>
+<li>change how the Python interpreter imports modules</li>
+<li>it is even possible (and recommended if needed) to embed C routines in Python.</li>
+</ul>
+<p>However, all these options have many drawbacks and it is always better to use
+the most straightforward way to achieve your goal. The main drawback is that
+readability suffers deeply from them. Many code analysis tools, such as pylint
+or pyflakes, will be unable to parse this &#8220;magic&#8221; code.</p>
+<p>We consider that a Python developer should know about these nearly infinite
+possibilities, because it grows the confidence that no hard-wall will be on the
+way.  However, knowing how to use them and particularly when <strong>not</strong> to use
+them is the most important.</p>
+<p>Like a Kungfu master, a Pythonista knows how to kill with a single finger, and
+never to actually do it.</p>
+</div>
+<div class="section" id="we-are-all-consenting-adults">
+<h3>We are all consenting adults<a class="headerlink" href="#we-are-all-consenting-adults" title="Permalink to this headline">¶</a></h3>
+<p>As seen above, Python allows many tricks, and some of them are potentially
+dangerous. A good example is that any client code can override an object&#8217;s
+properties and methods: there is no &#8220;private&#8221; keyword in Python. This
+philosophy, very different from highly defensive languages like Java, which
+give a lot of mechanisms to prevent any misuse, is expressed by the saying: &#8220;We
+are consenting adults&#8221;.</p>
+<p>This doesn&#8217;t mean that, for example, no properties are considered private, and
+that no proper encapsulation is possible in Python. But, instead of relying on
+concrete walls erected by the developers between their code and other&#8217;s, the
+Python community prefers to rely on a set of conventions indicating that these
+elements should not be accessed directly.</p>
+<p>The main convention for private properties and implementation details is to
+prefix all &#8220;internals&#8221; with an underscore. If the client code breaks this rule
+and accesses these marked elements, any misbehavior or problems encountered if
+the code is modified is the responsibility of the client code.</p>
+<p>Using this convention generously is encouraged: any method or property that is
+not intended to be used by client code should be prefixed with an underscore.
+This will guarantee a better separation of duties and easier modifications of
+existing code, and it will always be possible to publicize a private property,
+while privatising a public property might be a much harder operation.</p>
+</div>
+<div class="section" id="returning-values">
+<h3>Returning values<a class="headerlink" href="#returning-values" title="Permalink to this headline">¶</a></h3>
+<p>When a function grows in complexity is not uncommon to use multiple return statements
+inside the function&#8217;s body. However, in order to keep a clear intent and a sustainable
+readability level, it is preferable to avoid returning meaningful values from many
+output points in the body.</p>
+<p>There are two main cases for returning values in a function: The result of the function
+return when it has been processed normally, and the error cases that indicate a wrong
+input parameter or any other reason for the function to not be able to complete its
+computation or task.</p>
+<p>If you do not wish to raise exceptions for the second case, then returning a value, such
+as None or False, indicating that the function could not perform correctly might be needed. In this
+case, it is better to return as early as the incorrect context has been detected. It will
+help to flatten the structure of the function: all the code after the return-because-of-error
+statement can assume the condition is met to further compute the function&#8217;s main result.
+Having multiple such return statements is often necessary.</p>
+<p>However, when a function has multiple main exit points for its normal course, it becomes
+difficult to debug the returned result, and it may be preferable to keep a single exit
+point. This will also help factoring out some code paths, and the multiple exit points
+are a probable indication that such a refactoring is needed.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">complex_function</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">a</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">None</span>  <span class="c"># Raising an exception might be better</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">b</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">None</span>  <span class="c"># Raising an exception might be better</span>
+    <span class="c"># Some complex code trying to compute x from a, b and c</span>
+    <span class="c"># Resist temptation to return x if succeeded</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">x</span><span class="p">:</span>
+        <span class="c"># Some Plan-B computation of x</span>
+    <span class="k">return</span> <span class="n">x</span>  <span class="c"># One single exit point for the returned value x will help</span>
+              <span class="c"># when maintaining the code.</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="idioms">
+<h2>Idioms<a class="headerlink" href="#idioms" title="Permalink to this headline">¶</a></h2>
+<p>A programming idiom, put simply, is a <em>way</em> to write code. The notion of programming idioms
+is discussed amply at <a class="reference external" href="http://c2.com/cgi/wiki?ProgrammingIdiom">c2</a> and at <a class="reference external" href="http://stackoverflow.com/questions/302459/what-is-a-programming-idiom">Stack Overflow</a>.</p>
+<p>Idiomatic Python code is often referred to as being <em>Pythonic</em>.</p>
+<p>Although there usually is one&#8211; and preferably only one &#8211;obvious way to do it;
+<em>the</em> way to write idiomatic Python code can be non-obvious to Python beginners. So,
+good idioms must be consciously acquired.</p>
+<p>Some common Python idioms follow:</p>
+<div class="section" id="unpacking">
+<span id="unpacking-ref"></span><h3>Unpacking<a class="headerlink" href="#unpacking" title="Permalink to this headline">¶</a></h3>
+<p>If you know the length of a list or tuple, you can assign names to its
+elements with unpacking. For example, since <tt class="docutils literal"><span class="pre">enumerate()</span></tt> will provide
+a tuple of two elements for each item in list:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">item</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">some_list</span><span class="p">):</span>
+    <span class="c"># do something with index and item</span>
+</pre></div>
+</div>
+<p>You can use this to swap variables, as well:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">b</span><span class="p">,</span> <span class="n">a</span>
+</pre></div>
+</div>
+<p>Nested unpacking works too:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">a</span><span class="p">,</span> <span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="create-an-ignored-variable">
+<h3>Create an ignored variable<a class="headerlink" href="#create-an-ignored-variable" title="Permalink to this headline">¶</a></h3>
+<p>If you need to assign something (for instance, in <a class="reference internal" href="#unpacking-ref"><em>Unpacking</em></a>) but
+will not need that variable, use <tt class="docutils literal"><span class="pre">__</span></tt>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">filename</span> <span class="o">=</span> <span class="s">&#39;foobar.txt&#39;</span>
+<span class="n">basename</span><span class="p">,</span> <span class="n">__</span><span class="p">,</span> <span class="n">ext</span> <span class="o">=</span> <span class="n">filename</span><span class="o">.</span><span class="n">rpartition</span><span class="p">(</span><span class="s">&#39;.&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Many Python style guides recommend the use of a single underscore &#8220;<tt class="docutils literal"><span class="pre">_</span></tt>&#8221;
+for throwaway variables rather than the double underscore &#8220;<tt class="docutils literal"><span class="pre">__</span></tt>&#8221;
+recommended here. The issue is that &#8220;<tt class="docutils literal"><span class="pre">_</span></tt>&#8221; is commonly used as an alias
+for the <a class="reference external" href="http://docs.python.org/library/gettext.html#gettext.gettext" title="(in Python v2.7)"><tt class="xref py py-func docutils literal"><span class="pre">gettext()</span></tt></a> function, and is also used at the
+interactive prompt to hold the value of the last operation. Using a
+double underscore instead is just as clear and almost as convenient,
+and eliminates the risk of accidentally interfering with either of
+these other use cases.</p>
+</div>
+</div>
+<div class="section" id="create-a-length-n-list-of-the-same-thing">
+<h3>Create a length-N list of the same thing<a class="headerlink" href="#create-a-length-n-list-of-the-same-thing" title="Permalink to this headline">¶</a></h3>
+<p>Use the Python list <tt class="docutils literal"><span class="pre">*</span></tt> operator:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">four_nones</span> <span class="o">=</span> <span class="p">[</span><span class="bp">None</span><span class="p">]</span> <span class="o">*</span> <span class="mi">4</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="create-a-length-n-list-of-lists">
+<h3>Create a length-N list of lists<a class="headerlink" href="#create-a-length-n-list-of-lists" title="Permalink to this headline">¶</a></h3>
+<p>Because lists are mutable, the <tt class="docutils literal"><span class="pre">*</span></tt> operator (as above) will create a list
+of N references to the <cite>same</cite> list, which is not likely what you want.
+Instead, use a list comprehension:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">four_lists</span> <span class="o">=</span> <span class="p">[[]</span> <span class="k">for</span> <span class="n">__</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">4</span><span class="p">)]</span>
+</pre></div>
+</div>
+<p>A common idiom for creating strings is to use <a class="reference external" href="http://docs.python.org/library/stdtypes.html#str.join" title="(in Python v2.7)"><tt class="xref py py-meth docutils literal"><span class="pre">str.join()</span></tt></a> on an empty string.:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">letters</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;s&#39;</span><span class="p">,</span> <span class="s">&#39;p&#39;</span><span class="p">,</span> <span class="s">&#39;a&#39;</span><span class="p">,</span> <span class="s">&#39;m&#39;</span><span class="p">]</span>
+<span class="n">word</span> <span class="o">=</span> <span class="s">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">letters</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This will set the value of the variable <em>word</em> to &#8216;spam&#8217;. This idiom can be applied to lists and tuples.</p>
+<p>Sometimes we need to search through a collection of things. Let&#8217;s look at two options: lists and dictionaries.</p>
+<p>Take the following code for example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">d</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;s&#39;</span><span class="p">:</span> <span class="p">[],</span> <span class="s">&#39;p&#39;</span><span class="p">:</span> <span class="p">[],</span> <span class="s">&#39;a&#39;</span><span class="p">:</span> <span class="p">[],</span> <span class="s">&#39;m&#39;</span><span class="p">:</span> <span class="p">[]}</span>
+<span class="n">l</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;s&#39;</span><span class="p">,</span> <span class="s">&#39;p&#39;</span><span class="p">,</span> <span class="s">&#39;a&#39;</span><span class="p">,</span> <span class="s">&#39;m&#39;</span><span class="p">]</span>
+
+<span class="k">def</span> <span class="nf">lookup_dict</span><span class="p">(</span><span class="n">d</span><span class="p">):</span>
+    <span class="k">return</span> <span class="s">&#39;s&#39;</span> <span class="ow">in</span> <span class="n">d</span>
+
+<span class="k">def</span> <span class="nf">lookup_list</span><span class="p">(</span><span class="n">l</span><span class="p">):</span>
+    <span class="k">return</span> <span class="s">&#39;s&#39;</span> <span class="ow">in</span> <span class="n">l</span>
+</pre></div>
+</div>
+<p>Even though both functions look identical, because <em>lookup_dict</em> is utilizing the fact that dictionaries in python are hashtables, the lookup performance between the two is very different.
+Python will have to go through each item in the list to find a matching case, which is time consuming. By analysing the hash of the dictionary, finding keys in the dict can be done very quickly.
+For more information see this <a class="reference external" href="http://stackoverflow.com/questions/513882/python-list-vs-dict-for-look-up-table">StackOverflow</a> page.</p>
+</div>
+</div>
+<div class="section" id="zen-of-python">
+<h2>Zen of Python<a class="headerlink" href="#zen-of-python" title="Permalink to this headline">¶</a></h2>
+<p>Also known as <span class="target" id="index-0"></span><a class="pep reference external" href="http://www.python.org/dev/peps/pep-0020"><strong>PEP 20</strong></a>, the guiding principles for Python&#8217;s design.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">this</span>
+<span class="go">The Zen of Python, by Tim Peters</span>
+
+<span class="go">Beautiful is better than ugly.</span>
+<span class="go">Explicit is better than implicit.</span>
+<span class="go">Simple is better than complex.</span>
+<span class="go">Complex is better than complicated.</span>
+<span class="go">Flat is better than nested.</span>
+<span class="go">Sparse is better than dense.</span>
+<span class="go">Readability counts.</span>
+<span class="go">Special cases aren&#39;t special enough to break the rules.</span>
+<span class="go">Although practicality beats purity.</span>
+<span class="go">Errors should never pass silently.</span>
+<span class="go">Unless explicitly silenced.</span>
+<span class="go">In the face of ambiguity, refuse the temptation to guess.</span>
+<span class="go">There should be one-- and preferably only one --obvious way to do it.</span>
+<span class="go">Although that way may not be obvious at first unless you&#39;re Dutch.</span>
+<span class="go">Now is better than never.</span>
+<span class="go">Although never is often better than *right* now.</span>
+<span class="go">If the implementation is hard to explain, it&#39;s a bad idea.</span>
+<span class="go">If the implementation is easy to explain, it may be a good idea.</span>
+<span class="go">Namespaces are one honking great idea -- let&#39;s do more of those!</span>
+</pre></div>
+</div>
+<p>For some examples of good Python style, see <a class="reference external" href="http://stackoverflow.com/questions/228181/the-zen-of-python">this Stack Overflow question</a> or <a class="reference external" href="http://artifex.org/~hblanks/talks/2011/pep20_by_example.pdf">these
+slides from a Python user group</a>.</p>
+</div>
+<div class="section" id="pep-8">
+<h2>PEP 8<a class="headerlink" href="#pep-8" title="Permalink to this headline">¶</a></h2>
+<p><span class="target" id="index-1"></span><a class="pep reference external" href="http://www.python.org/dev/peps/pep-0008"><strong>PEP 8</strong></a> is the de-facto code style guide for Python.</p>
+<p>Conforming your Python code to PEP 8 is generally a good idea and helps make
+code more consistent when working on projects with other developers. There
+exists a command-line program, <a class="reference external" href="https://github.com/jcrocholl/pep8">pep8</a>,
+that can check your code for conformance. Install it by running the following
+command in your Terminal:</p>
+<div class="highlight-python"><pre>$ pip install pep8</pre>
+</div>
+<p>Then run it on a file or series of files to get a report of any violations.</p>
+<div class="highlight-python"><pre>$ pep8 optparse.py
+optparse.py:69:11: E401 multiple imports on one line
+optparse.py:77:1: E302 expected 2 blank lines, found 1
+optparse.py:88:5: E301 expected 1 blank line, found 0
+optparse.py:222:34: W602 deprecated form of raising exception
+optparse.py:347:31: E211 whitespace before '('
+optparse.py:357:17: E201 whitespace after '{'
+optparse.py:472:29: E221 multiple spaces before operator
+optparse.py:544:21: W601 .has_key() is deprecated, use 'in'</pre>
+</div>
+</div>
+<div class="section" id="conventions">
+<h2>Conventions<a class="headerlink" href="#conventions" title="Permalink to this headline">¶</a></h2>
+<p>Here are some conventions you should follow to make your code easier to read.</p>
+<div class="section" id="check-if-variable-equals-a-constant">
+<h3>Check if variable equals a constant<a class="headerlink" href="#check-if-variable-equals-a-constant" title="Permalink to this headline">¶</a></h3>
+<p>You don&#8217;t need to explicitly compare a value to True, or None, or 0 - you can
+just add it to the if statement. See <a href="#id2"><span class="problematic" id="id3">:ref:`Truth Value Testing
+&lt;http://docs.python.org/library/stdtypes.html#truth-value-testing&gt;`_</span></a> for a
+list of what is considered false.</p>
+<p><strong>Bad</strong>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">if</span> <span class="n">attr</span> <span class="o">==</span> <span class="bp">True</span><span class="p">:</span>
+    <span class="k">print</span> <span class="s">&#39;True!&#39;</span>
+
+<span class="k">if</span> <span class="n">attr</span> <span class="o">==</span> <span class="bp">None</span><span class="p">:</span>
+    <span class="k">print</span> <span class="s">&#39;attr is None!&#39;</span>
+</pre></div>
+</div>
+<p><strong>Good</strong>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># Just check the value</span>
+<span class="k">if</span> <span class="n">attr</span><span class="p">:</span>
+    <span class="k">print</span> <span class="s">&#39;attr is truthy!&#39;</span>
+
+<span class="c"># or check for the opposite</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">attr</span><span class="p">:</span>
+    <span class="k">print</span> <span class="s">&#39;attr is falsey!&#39;</span>
+
+<span class="c"># or, since None is considered false, explicitly check for it</span>
+<span class="k">if</span> <span class="n">attr</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+    <span class="k">print</span> <span class="s">&#39;attr is None!&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="access-a-dictionary-element">
+<h3>Access a Dictionary Element<a class="headerlink" href="#access-a-dictionary-element" title="Permalink to this headline">¶</a></h3>
+<p>Don&#8217;t use the <a class="reference external" href="http://docs.python.org/library/stdtypes.html#dict.has_key" title="(in Python v2.7)"><tt class="xref py py-meth docutils literal"><span class="pre">dict.has_key()</span></tt></a> method. Instead, use <tt class="docutils literal"><span class="pre">x</span> <span class="pre">in</span> <span class="pre">d</span></tt> syntax,
+or pass a default argument to <a class="reference external" href="http://docs.python.org/library/stdtypes.html#dict.get" title="(in Python v2.7)"><tt class="xref py py-meth docutils literal"><span class="pre">dict.get()</span></tt></a>.</p>
+<p><strong>Bad</strong>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">d</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;hello&#39;</span><span class="p">:</span> <span class="s">&#39;world&#39;</span><span class="p">}</span>
+<span class="k">if</span> <span class="n">d</span><span class="o">.</span><span class="n">has_key</span><span class="p">(</span><span class="s">&#39;hello&#39;</span><span class="p">):</span>
+    <span class="k">print</span> <span class="n">d</span><span class="p">[</span><span class="s">&#39;hello&#39;</span><span class="p">]</span>    <span class="c"># prints &#39;world&#39;</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="k">print</span> <span class="s">&#39;default_value&#39;</span>
+</pre></div>
+</div>
+<p><strong>Good</strong>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">d</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;hello&#39;</span><span class="p">:</span> <span class="s">&#39;world&#39;</span><span class="p">}</span>
+
+<span class="k">print</span> <span class="n">d</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;hello&#39;</span><span class="p">,</span> <span class="s">&#39;default_value&#39;</span><span class="p">)</span> <span class="c"># prints &#39;world&#39;</span>
+<span class="k">print</span> <span class="n">d</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;thingy&#39;</span><span class="p">,</span> <span class="s">&#39;default_value&#39;</span><span class="p">)</span> <span class="c"># prints &#39;default_value&#39;</span>
+
+<span class="c"># Or:</span>
+<span class="k">if</span> <span class="s">&#39;hello&#39;</span> <span class="ow">in</span> <span class="n">d</span><span class="p">:</span>
+    <span class="k">print</span> <span class="n">d</span><span class="p">[</span><span class="s">&#39;hello&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="short-ways-to-manipulate-lists">
+<h3>Short Ways to Manipulate Lists<a class="headerlink" href="#short-ways-to-manipulate-lists" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="http://docs.python.org/tutorial/datastructures.html#list-comprehensions">List comprehensions</a>
+provide a powerful, concise way to work with lists. Also, the <a class="reference external" href="http://docs.python.org/library/functions.html#map" title="(in Python v2.7)"><tt class="xref py py-func docutils literal"><span class="pre">map()</span></tt></a>
+<a class="reference external" href="http://docs.python.org/library/functions.html#filter" title="(in Python v2.7)"><tt class="xref py py-func docutils literal"><span class="pre">filter()</span></tt></a> functions can perform operations on lists using a different,
+more concise syntax.</p>
+<p><strong>Bad</strong>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># Filter elements greater than 4</span>
+<span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+<span class="n">b</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">a</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">4</span><span class="p">:</span>
+        <span class="n">b</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Good</strong>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+<span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">a</span> <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">4</span><span class="p">]</span>
+<span class="n">b</span> <span class="o">=</span> <span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="mi">4</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Bad</strong>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># Add three to all list members.</span>
+<span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">)):</span>
+    <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">3</span>
+</pre></div>
+</div>
+<p><strong>Good</strong>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+<span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">3</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">a</span><span class="p">]</span>
+<span class="c"># Or:</span>
+<span class="n">a</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">i</span><span class="p">:</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">3</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Use <a class="reference external" href="http://docs.python.org/library/functions.html#enumerate" title="(in Python v2.7)"><tt class="xref py py-func docutils literal"><span class="pre">enumerate()</span></tt></a> keep a count of your place in the list.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">item</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
+    <span class="k">print</span> <span class="n">i</span><span class="p">,</span> <span class="n">item</span>
+<span class="c"># prints</span>
+<span class="c"># 0 3</span>
+<span class="c"># 1 4</span>
+<span class="c"># 2 5</span>
+</pre></div>
+</div>
+<p>The <a class="reference external" href="http://docs.python.org/library/functions.html#enumerate" title="(in Python v2.7)"><tt class="xref py py-func docutils literal"><span class="pre">enumerate()</span></tt></a> function has better readability than handling a
+counter manually. Moreover, it is better optimized for iterators.</p>
+</div>
+<div class="section" id="read-from-a-file">
+<h3>Read From a File<a class="headerlink" href="#read-from-a-file" title="Permalink to this headline">¶</a></h3>
+<p>Use the <tt class="docutils literal"><span class="pre">with</span> <span class="pre">open</span></tt> syntax to read from files. This will automatically close
+files for you.</p>
+<p><strong>Bad</strong>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">&#39;file.txt&#39;</span><span class="p">)</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="k">print</span> <span class="n">a</span>
+<span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><strong>Good</strong>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">&#39;file.txt&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
+        <span class="k">print</span> <span class="n">line</span>
+</pre></div>
+</div>
+<p>The <tt class="docutils literal"><span class="pre">with</span></tt> statement is better because it will ensure you always close the
+file, even if an exception is raised.</p>
+</div>
+<div class="section" id="line-continuations">
+<h3>Line Continuations<a class="headerlink" href="#line-continuations" title="Permalink to this headline">¶</a></h3>
+<p>When a logical line of code is longer than the accepted limit, you need to
+split it over multiple physical lines. Python interpreter will join consecutive
+lines if the last character of the line is a backslash. This is helpful
+sometimes but is preferably avoided, because of its fragility: a white space
+added to the end of the line, after the backslash, will break the code and may
+have unexpected results.</p>
+<p>A preferred solution is to use parentheses around your elements. Left with an
+unclosed parenthesis on an end-of-line the Python interpreter will join the
+next line until the parentheses are closed. The same behavior holds for curly
+and square braces.</p>
+<p><strong>Bad</strong>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">my_very_big_string</span> <span class="o">=</span> <span class="s">&quot;&quot;&quot;For a long time I used to go to bed early. Sometimes, </span><span class="se">\</span>
+<span class="s">    when I had put out my candle, my eyes would close so quickly that I had not even </span><span class="se">\</span>
+<span class="s">    time to say “I’m going to sleep.”&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">some.deep.module.inside.a.module</span> <span class="kn">import</span> <span class="n">a_nice_function</span><span class="p">,</span> <span class="n">another_nice_function</span><span class="p">,</span> \
+    <span class="n">yet_another_nice_function</span>
+</pre></div>
+</div>
+<p><strong>Good</strong>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">my_very_big_string</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="s">&quot;For a long time I used to go to bed early. Sometimes, &quot;</span>
+    <span class="s">&quot;when I had put out my candle, my eyes would close so quickly &quot;</span>
+    <span class="s">&quot;that I had not even time to say “I’m going to sleep.”&quot;</span>
+<span class="p">)</span>
+
+<span class="kn">from</span> <span class="nn">some.deep.module.inside.a.module</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">a_nice_function</span><span class="p">,</span> <span class="n">another_nice_function</span><span class="p">,</span> <span class="n">yet_another_nice_function</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>However, more often than not having to split long logical line is a sign that
+you are trying to do too many things at the same time, which may hinder
+readability.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper"><h1><a href="http://python-guide.org">Python指南.</a></h1>
+<p>
+  这份“傻逼”的指南旨在给Python的新老手们提供一个不错的参考书来安装、配置和使用Python
+</p>
+
+<h3>获取更新</h3>
+<p>收取更新消息</p>
+
+<p><a href="http://tinyletter.com/kennethreitz">订阅新闻邮件</a></p>
+
+<h3>捐助</h3>
+<p>
+    如果你喜欢这个指南，给作者捐点Money吧<a href="https://www.gittip.com/kennethreitz/">on Gittip</a>:
+</p>
+<p>
+  <iframe style="border: 0; margin: 0; padding: 0;"
+      src="https://www.gittip.com/kennethreitz/widget.html"
+      width="48pt" height="20pt"></iframe>
+</p>
+  <h3><a href="../../">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Code Style</a><ul>
+<li><a class="reference internal" href="#general-concepts">General concepts</a><ul>
+<li><a class="reference internal" href="#explicit-code">Explicit code</a></li>
+<li><a class="reference internal" href="#one-statement-per-line">One statement per line</a></li>
+<li><a class="reference internal" href="#function-arguments">Function arguments</a></li>
+<li><a class="reference internal" href="#avoid-the-magical-wand">Avoid the magical wand</a></li>
+<li><a class="reference internal" href="#we-are-all-consenting-adults">We are all consenting adults</a></li>
+<li><a class="reference internal" href="#returning-values">Returning values</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#idioms">Idioms</a><ul>
+<li><a class="reference internal" href="#unpacking">Unpacking</a></li>
+<li><a class="reference internal" href="#create-an-ignored-variable">Create an ignored variable</a></li>
+<li><a class="reference internal" href="#create-a-length-n-list-of-the-same-thing">Create a length-N list of the same thing</a></li>
+<li><a class="reference internal" href="#create-a-length-n-list-of-lists">Create a length-N list of lists</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#zen-of-python">Zen of Python</a></li>
+<li><a class="reference internal" href="#pep-8">PEP 8</a></li>
+<li><a class="reference internal" href="#conventions">Conventions</a><ul>
+<li><a class="reference internal" href="#check-if-variable-equals-a-constant">Check if variable equals a constant</a></li>
+<li><a class="reference internal" href="#access-a-dictionary-element">Access a Dictionary Element</a></li>
+<li><a class="reference internal" href="#short-ways-to-manipulate-lists">Short Ways to Manipulate Lists</a></li>
+<li><a class="reference internal" href="#read-from-a-file">Read From a File</a></li>
+<li><a class="reference internal" href="#line-continuations">Line Continuations</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../">Documentation overview</a><ul>
+      <li>Previous: <a href="../structure/" title="previous chapter">Structuring Your Project</a></li>
+      <li>Next: <a href="../reading/" title="next chapter">Reading Great Code</a></li>
+  </ul></li>
+</ul>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../../_sources/writing/style.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search/" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy; Copyright 2013. A <a href="http://kennethreitz.com/pages/open-projects.html">Kenneth Reitz</a> Project. <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/"> Creative Commons Share-Alike 3.0</a>.
+    </div>
+    <a href="https://github.com/kennethreitz/python-guide" class="github">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" />
+    </a>
+
+    <script type="text/javascript">
+
+      var _gaq2 = _gaq2 || [];
+      _gaq2.push(['_setAccount', 'UA-8742933-10']);
+      _gaq2.push(['_setDomainName', 'none']);
+      _gaq2.push(['_setAllowLinker', true]);
+      _gaq2.push(['_trackPageview']);
+
+      (function() {
+        var ga2 = document.createElement('script'); ga2.type = 'text/javascript'; ga2.async = true;
+        ga2.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga2, s);
+      })();
+
+    </script>
+
+    <script type="text/javascript">
+      (function() {
+        var t   = document.createElement('script');
+        t.type  = 'text/javascript';
+        t.async = true;
+        t.id    = 'gauges-tracker';
+        t.setAttribute('data-site-id',
+                       '4ddc1cfaf5a1f50fcc000001');
+        t.src = '//secure.gaug.es/track.js';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(t, s);
+      })();
+    </script>
+  </body>
+</html>

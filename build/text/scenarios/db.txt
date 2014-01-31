@@ -1,0 +1,35 @@
+
+Databases
+*********
+
+
+DB-API
+======
+
+The Python Database API (DB-API) defines a standard interface for
+Python database access modules. It's documented in **PEP 249**. Nearly
+all Python database modules such as *sqlite3*, *psycopg* and *mysql-
+python* conform to this interface.
+
+Tutorials that explain how to work with modules that conform to this
+interface can be found here and here.
+
+
+SQLAlchemy
+==========
+
+SQLAlchemy is a commonly used database toolkit. Unlike many database
+libraries it not only provides an ORM layer but also a generalized API
+for writing database-agnostic code without SQL.
+
+   pip install sqlalchemy
+
+
+Django ORM
+==========
+
+The Django ORM is the interface used by Django to provide database
+access.
+
+It's based on the idea of models, an abstraction that makes it easier
+to manipulate data in Python.

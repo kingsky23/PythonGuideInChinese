@@ -1,0 +1,239 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Installing Python on Windows &mdash; The Hitchhiker&#39;s Guide to Python</title>
+    
+    <link rel="stylesheet" href="../../_static/flasky.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="The Hitchhiker&#39;s Guide to Python" href="../../index.html" />
+    <link rel="next" title="Installing Python on Linux" href="linux.html" />
+    <link rel="prev" title="Installing Python on Mac OS X" href="osx.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="linux.html" title="Installing Python on Linux"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="osx.html" title="Installing Python on Mac OS X"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../../index.html">The Hitchhiker&#39;s Guide to Python</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="installing-python-on-windows">
+<span id="install-windows"></span><h1>Installing Python on Windows<a class="headerlink" href="#installing-python-on-windows" title="Permalink to this headline">¶</a></h1>
+<p>First, download the <a class="reference external" href="http://python.org/ftp/python/2.7.4/python-2.7.4.msi">latest version</a>
+of Python 2.7 from the official Website. If you want to be sure you are installing a fully
+up-to-date version then use the &#8220;Windows Installer&#8221; link from the home page of the
+<a class="reference external" href="http://python.org">Python.org web site</a> .</p>
+<p>The Windows version is provided as an MSI package. To install it manually, just
+double-click the file. The MSI package format allows Windows administrators to
+automate installation with their standard tools.</p>
+<p>By design, Python installs to a directory with the version number embedded,
+e.g. Python version 2.7 will install at <tt class="docutils literal"><span class="pre">C:\Python27\</span></tt>, so that you can
+have multiple versions of Python on the
+same system without conflicts. Of course, only one interpreter can be the
+default application for Python file types. It also does not automatically
+modify the <tt class="docutils literal"><span class="pre">PATH</span></tt> environment variable, so that you always have control over
+which copy of Python is run.</p>
+<p>Typing the full path name for a Python interpreter each time quickly gets
+tedious, so add the directories for your default Python version to the PATH.
+Assuming that your Python installation is in <tt class="docutils literal"><span class="pre">C:\Python27\</span></tt>, add this to your
+PATH:</p>
+<div class="highlight-python"><pre>C:\Python27\;C:\Python27\Scripts\</pre>
+</div>
+<p>You can do this easily by running the following in <tt class="docutils literal"><span class="pre">powershell</span></tt>:</p>
+<div class="highlight-python"><pre>[Environment]::SetEnvironmentVariable("Path", "$env:Path;C:\Python27\;C:\Python27\Scripts\", "User")</pre>
+</div>
+<p>The second (<tt class="docutils literal"><span class="pre">Scripts</span></tt>) directory receives command files when certain
+packages are installed, so it is a very useful addition.
+You do not need to install or configure anything else to use Python. Having
+said that, I would strongly recommend that you install the tools and libraries
+described in the next section before you start building Python applications for
+real-world use. In particular, you should always install Setuptools, as it
+makes it much easier for you to use other third-party Python libraries.</p>
+<div class="section" id="setuptools-pip">
+<h2>Setuptools + Pip<a class="headerlink" href="#setuptools-pip" title="Permalink to this headline">¶</a></h2>
+<p>The most crucial third-party Python software of all is Setuptools, which
+extends the packaging and installation facilities provided by the distutils in
+the standard library. Once you add Setuptools to your Python system you can
+download and install any compliant Python software product with a single
+command. It also enables you to add this network installation capability to
+your own Python software with very little work.</p>
+<p>To obtain the latest version of Setuptools for Windows, run the python script
+available here: <a class="reference external" href="https://bitbucket.org/pypa/setuptools/raw/bootstrap/ez_setup.py">ez_setup.py</a></p>
+<p>You&#8217;ll now have a new command available to you: <strong>easy_install</strong>. It is
+considered by many to be deprecated, so we will install its replacement:
+<strong>pip</strong>. Pip allows for uninstallation of packages, and is actively maintained,
+unlike easy_install.</p>
+<p>To install pip, run the python script available here:
+<a class="reference external" href="https://raw.github.com/pypa/pip/master/contrib/get-pip.py">get-pip.py</a></p>
+</div>
+<div class="section" id="virtualenv">
+<h2>Virtualenv<a class="headerlink" href="#virtualenv" title="Permalink to this headline">¶</a></h2>
+<p>After Distribute &amp; Pip, the next development tool that you should install is
+<a class="reference external" href="http://pypi.python.org/pypi/virtualenv/">virtualenv</a>. Use pip</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">&gt;</span> pip install virtualenv
+</pre></div>
+</div>
+<p>The virtualenv kit provides the ability to create virtual Python environments
+that do not interfere with either each other, or the main Python installation.
+If you install virtualenv before you begin coding then you can get into the
+habit of using it to create completely clean Python environments for each
+project. This is particularly important for Web development, where each
+framework and application will have many dependencies.</p>
+<p>To set up a new Python environment, change the working directory to where ever
+you want to store the environment, and run the virtualenv utility in your
+project&#8217;s directory</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">&gt;</span> virtualenv venv
+</pre></div>
+</div>
+<p>To use an environment, run the <tt class="docutils literal"><span class="pre">activate.bat</span></tt> batch file in the <tt class="docutils literal"><span class="pre">Scripts</span></tt>
+subdirectory of that environment. Your command prompt will change to show the
+active environment. Once you have finished working in the current virtual
+environment, run the <tt class="docutils literal"><span class="pre">deactivate.bat</span></tt> batch file to restore your settings to
+normal.</p>
+<p>Each new environment automatically includes a copy of <tt class="docutils literal"><span class="pre">pip</span></tt> in the
+<tt class="docutils literal"><span class="pre">Scripts</span></tt> subdirectory, so that you can setup the third-party libraries and
+tools that you want to use in that environment. Put your own code within a
+subdirectory of the environment, however you wish. When you no longer need a
+particular environment, simply copy your code out of it, and then delete the
+main directory for the environment.</p>
+<hr class="docutils" />
+<p>This page is a remixed version of <a class="reference external" href="http://www.stuartellis.eu/articles/python-development-windows/">another guide</a>,
+which is available under the same license.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper"><h1><a href="http://python-guide.org">Python指南.</a></h1>
+<p>
+  这份“傻逼”的指南旨在给Python的新老手们提供一个不错的参考书来安装、配置和使用Python
+</p>
+
+<h3>获取更新</h3>
+<p>收取更新消息</p>
+
+<p><a href="http://tinyletter.com/kennethreitz">订阅新闻邮件</a></p>
+
+<h3>捐助</h3>
+<p>
+    如果你喜欢这个指南，给作者捐点Money吧<a href="https://www.gittip.com/kennethreitz/">on Gittip</a>:
+</p>
+<p>
+  <iframe style="border: 0; margin: 0; padding: 0;"
+      src="https://www.gittip.com/kennethreitz/widget.html"
+      width="48pt" height="20pt"></iframe>
+</p>
+  <h3><a href="../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Installing Python on Windows</a><ul>
+<li><a class="reference internal" href="#setuptools-pip">Setuptools + Pip</a></li>
+<li><a class="reference internal" href="#virtualenv">Virtualenv</a></li>
+</ul>
+</li>
+</ul>
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="osx.html" title="previous chapter">Installing Python on Mac OS X</a></li>
+      <li>Next: <a href="linux.html" title="next chapter">Installing Python on Linux</a></li>
+  </ul></li>
+</ul>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../../_sources/starting/install/win.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy; Copyright 2013. A <a href="http://kennethreitz.com/pages/open-projects.html">Kenneth Reitz</a> Project. <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/"> Creative Commons Share-Alike 3.0</a>.
+    </div>
+    <a href="https://github.com/kennethreitz/python-guide" class="github">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" />
+    </a>
+
+    <script type="text/javascript">
+
+      var _gaq2 = _gaq2 || [];
+      _gaq2.push(['_setAccount', 'UA-8742933-10']);
+      _gaq2.push(['_setDomainName', 'none']);
+      _gaq2.push(['_setAllowLinker', true]);
+      _gaq2.push(['_trackPageview']);
+
+      (function() {
+        var ga2 = document.createElement('script'); ga2.type = 'text/javascript'; ga2.async = true;
+        ga2.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga2, s);
+      })();
+
+    </script>
+
+    <script type="text/javascript">
+      (function() {
+        var t   = document.createElement('script');
+        t.type  = 'text/javascript';
+        t.async = true;
+        t.id    = 'gauges-tracker';
+        t.setAttribute('data-site-id',
+                       '4ddc1cfaf5a1f50fcc000001');
+        t.src = '//secure.gaug.es/track.js';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(t, s);
+      })();
+    </script>
+  </body>
+</html>

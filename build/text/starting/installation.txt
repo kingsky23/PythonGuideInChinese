@@ -1,0 +1,23 @@
+
+正确安装Python
+**************
+
+也许你的操作系统已经自带了Python
+
+如果正是如此，你就不需要安装或配置任何东西了。但在你真正开始编写Python
+程序之 前我还是强烈建议你应该提前安装好指南中所描述的工具和库。特别的
+，你应该一直装 着Distribute, Pip和Virtualenv，他们可以让使用第三方
+Python库变得更简单
+
+
+安装指南
+========
+
+这份指南讲述了如何正确安装:ref:*Python 2.7 <which-python>*，同时还将教
+你如何安装 distribute, pip和virtualenv
+
+* *Mac OS X*.
+
+* *Microsoft Windows*.
+
+* *Ubuntu Linux*.

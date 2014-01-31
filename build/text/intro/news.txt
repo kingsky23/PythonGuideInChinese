@@ -1,0 +1,48 @@
+
+News
+****
+
+
+Planet Python
+=============
+
+This is an aggregate of Python news from a growing number of
+developers.
+
+   Planet Python
+
+
+/r/python
+=========
+
+/r/python is the Reddit Python community where users contribute and
+vote on Python-related news.
+
+   /r/python
+
+
+Pycoder's Weekly
+================
+
+Pycoder's Weekly is a free weekly python newsletter for Python
+developers by Python developers (Project, Articles, News, and Jobs).
+
+   Pycoder's Weekly
+
+
+Python Weekly
+=============
+
+Python Weekly is a free weekly newsletter featuring curated news,
+articles, new releases, jobs, etc. related to Python.
+
+   Python Weekly
+
+
+Python News
+===========
+
+News section in the official Python web site (www.python.org). It
+briefly highlights the news from Python community.
+
+   Python News

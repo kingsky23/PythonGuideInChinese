@@ -1,0 +1,5 @@
+需要以下python模块，可以用easy_install或pip进行安装：
+	requests
+	sphinx
+
+

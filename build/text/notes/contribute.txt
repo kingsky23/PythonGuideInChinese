@@ -1,0 +1,119 @@
+
+Contribute
+**********
+
+Python-guide is under active development, and contributors are
+welcome.
+
+If you have a feature request, suggestion, or bug report, please open
+a new issue on GitHub. To submit patches, please send a pull request
+on GitHub. Once your changes get merged back in, you'll automatically
+be added to the Contributors List.
+
+
+Style Guide
+===========
+
+For all contributions, please follow the *The Guide Style Guide*.
+
+
+Todo List
+=========
+
+If you'd like to contribute, there's plenty to do. Here's a short todo
+list.
+
+   * Establish "use this" vs "alternatives are...." recommendations
+
+   Todo: add supertab notes
+
+   (The *original entry* is located in  C:\Users\Administrator\Desktop
+   \python-guide-master\docs\dev\env.rst, line 88.)
+
+   Todo: Write about ChefChef Documentation
+
+   (The *original entry* is located in  C:\Users\Administrator\Desktop
+   \python-guide-master\docs\scenarios\admin.rst, line 183.)
+
+   Todo: Write about PuppetPuppet Labs Documentation
+
+   (The *original entry* is located in  C:\Users\Administrator\Desktop
+   \python-guide-master\docs\scenarios\admin.rst, line 191.)
+
+   Todo: Write about Blueprint
+
+   (The *original entry* is located in  C:\Users\Administrator\Desktop
+   \python-guide-master\docs\scenarios\admin.rst, line 198.)
+
+   Todo: Write about BuildoutBuildout Website
+
+   (The *original entry* is located in  C:\Users\Administrator\Desktop
+   \python-guide-master\docs\scenarios\admin.rst, line 203.)
+
+   Todo: Write about Mule
+
+   (The *original entry* is located in  C:\Users\Administrator\Desktop
+   \python-guide-master\docs\scenarios\ci.rst, line 36.)
+
+   Todo: Explain "Command Line Applications"
+
+   (The *original entry* is located in  C:\Users\Administrator\Desktop
+   \python-guide-master\docs\scenarios\cli.rst, line 4.)
+
+   Todo: Write about Clint
+
+   (The *original entry* is located in  C:\Users\Administrator\Desktop
+   \python-guide-master\docs\scenarios\cli.rst, line 9.)
+
+   Todo: Write about RabbitMQ
+
+   (The *original entry* is located in  C:\Users\Administrator\Desktop
+   \python-guide-master\docs\scenarios\client.rst, line 48.)
+
+   Todo: Add introduction about image manipulation and its Python
+   libraries.
+
+   (The *original entry* is located in  C:\Users\Administrator\Desktop
+   \python-guide-master\docs\scenarios\imaging.rst, line 5.)
+
+   Todo: Write about Numba and the autojit compiler for NumPy
+
+   (The *original entry* is located in  C:\Users\Administrator\Desktop
+   \python-guide-master\docs\scenarios\speed.rst, line 81.)
+
+   Todo: Fill in "Freezing Your Code" stub
+
+   (The *original entry* is located in  C:\Users\Administrator\Desktop
+   \python-guide-master\docs\shipping\freezing.rst, line 13.)
+
+   Todo: Add other solutions: py2app
+
+   (The *original entry* is located in  C:\Users\Administrator\Desktop
+   \python-guide-master\docs\shipping\freezing.rst, line 31.)
+
+   Todo: Write steps for most basic .exe
+
+   (The *original entry* is located in  C:\Users\Administrator\Desktop
+   \python-guide-master\docs\shipping\freezing.rst, line 51.)
+
+   Todo: Embed and explain YouTube video showing python code reading:
+   http://www.youtube.com/watch?v=Jc8M9-LoEuo This may require
+   installing a Sphinx plugin. https://bitbucket.org/birkenfeld
+   /sphinx-contrib/src/a09f29fc16970f34350ca36ac7f229e00b1b1674/youtu
+   be?at=default
+
+   (The *original entry* is located in  C:\Users\Administrator\Desktop
+   \python-guide-master\docs\writing\reading.rst, line 40.)
+
+   Todo: Include code examples of exemplary code from each of the
+   projects listed. Explain why it is excellent code. Use complex
+   examples.
+
+   (The *original entry* is located in  C:\Users\Administrator\Desktop
+   \python-guide-master\docs\writing\reading.rst, line 42.)
+
+   Todo: Explain techniques to rapidly identify data structures,
+   algorithms and determine what the code is doing.
+
+   (The *original entry* is located in  C:\Users\Administrator\Desktop
+   \python-guide-master\docs\writing\reading.rst, line 44.)
